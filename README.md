@@ -1,6 +1,6 @@
 ![Header](header.svg)
 
-# notation
+# 🎵 notation
 
 Reading music is hard.
 
