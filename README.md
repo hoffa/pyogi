@@ -31,3 +31,5 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 ### Stem
 
 Assuming `d` is the [note value](https://en.wikipedia.org/wiki/Note_value) (where 1 is a whole note), the stem length is `(log2(1 / d) + 1) * c`. If `d` is 1, the stem length is 0.
+
+The longer the note, the shorter the stem.
