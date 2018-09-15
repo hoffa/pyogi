@@ -10,7 +10,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Staves
 
-![](stave.svg)
+![](staff.svg)
 
 * Thick lines always represent [C notes](https://en.wikipedia.org/wiki/C_(musical_note)), no matter the key.
 * [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by vertical lines.
