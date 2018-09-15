@@ -6,7 +6,7 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 
 ## Stave
 
-![](stem.svg)
+![](stave.svg)
 
 ## Note
 
@@ -14,7 +14,11 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 
 #### Natural
 
+![](natural.svg)
+
 #### Sharp
+
+![](sharp.svg)
 
 #### Flat
 
