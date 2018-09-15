@@ -17,6 +17,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 * Thick lines always represent [C notes](https://en.wikipedia.org/wiki/C_(musical_note)), no matter the [key](https://en.wikipedia.org/wiki/Key_(music)).
 * [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by vertical lines.
 * [Time signatures](https://en.wikipedia.org/wiki/Time_signature) and [key signatures](https://en.wikipedia.org/wiki/Key_signature) are not shown.
+* Changes in [octave](https://en.wikipedia.org/wiki/Octave) are indicated using a signed number at the start of the measure.
 
 ## Notes
 
