@@ -22,6 +22,8 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 
 #### Flat
 
+![](flat.svg)
+
 ### Stem
 
 Assuming `d` is the [note value](https://en.wikipedia.org/wiki/Note_value) (where 1 is a whole note), the stem length is `(log2(1 / d) + 1) * c`. If `d` is 1, the stem length is 0.
