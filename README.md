@@ -18,7 +18,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Notes
 
-Note value and accidental are encoded in the shape of the note. There are no fancy wiggles or rest symbols.
+[Note value](https://en.wikipedia.org/wiki/Note_value) and [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) are encoded in the shape of the note. There are no fancy wiggles or [rest symbols](https://en.wikipedia.org/wiki/Rest_(music)).
 
 ### Natural
 
@@ -34,7 +34,7 @@ Note value and accidental are encoded in the shape of the note. There are no fan
 
 ### Stem length
 
-Assuming `d` is the [note value](https://en.wikipedia.org/wiki/Note_value) (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `(log2(1 / d) + 1) * h`. If `d` is 1, the stem length is 0.
+Assuming `d` is the note value (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `(log2(1 / d) + 1) * h`. If `d` is 1, the stem length is 0.
 
 For example, a [quarter note](https://en.wikipedia.org/wiki/Quarter_note) will have a stem length of `log2(1 / 0.25) + 1 = 3` staff line gaps, an [eighth note](https://en.wikipedia.org/wiki/Eighth_note) will have a length of `log(1 / 0.125) + 1 = 4` staff line gaps, etc.
 
