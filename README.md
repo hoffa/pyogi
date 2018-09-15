@@ -8,7 +8,9 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 
 ![](stave.svg)
 
-Thick lines always represent [C notes](https://en.wikipedia.org/wiki/C_(musical_note)), no matter the key. [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by a vertical line. [Time signatures](https://en.wikipedia.org/wiki/Time_signature) and [key signatures](https://en.wikipedia.org/wiki/Key_signature) are not shown.
+* Thick lines always represent [C notes](https://en.wikipedia.org/wiki/C_(musical_note)), no matter the key.
+* [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by vertical lines.
+* [Time signatures](https://en.wikipedia.org/wiki/Time_signature) and [key signatures](https://en.wikipedia.org/wiki/Key_signature) are not shown.
 
 ## Note
 
