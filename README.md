@@ -1,3 +1,5 @@
+![Header](header.svg)
+
 # notation
 
 Reading music sheets is hard.
