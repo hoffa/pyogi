@@ -32,8 +32,8 @@ Note value and accidental are encoded in the shape of the note. There are no fan
 
 ![](flat.svg)
 
-### Stem
-
-Assuming `d` is the [note value](https://en.wikipedia.org/wiki/Note_value) (where 1 is a whole note), the stem length is `(log2(1 / d) + 1) * c`. If `d` is 1, the stem length is 0.
+### Stem length
 
 The longer the note, the shorter the stem.
+
+Assuming `d` is the [note value](https://en.wikipedia.org/wiki/Note_value) (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `(log2(1 / d) + 1) * h`. If `d` is 1, the stem length is 0.
