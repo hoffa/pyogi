@@ -18,6 +18,8 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Notes
 
+Note value and accidental are encoded in the shape of the note. There are no fancy wiggles or rest symbols.
+
 ### Natural
 
 ![](natural.svg)
