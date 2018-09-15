@@ -2,7 +2,7 @@
 
 # notation
 
-Reading music sheets is hard.
+Reading music is hard.
 
 I got frustrated with the inconsistencies and (what I perceived as) unnecessary complexity in modern music notation. All I want to know is where to put my fingers. Note length, tempo, velocity, progression and other stuff are minor worries in comparison. Those things can be _felt_, without learning.
 
