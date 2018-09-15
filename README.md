@@ -4,7 +4,7 @@ Reading music sheets is hard. All I want to know is roughly where to put my fing
 
 I wanted to create a simple, consistent music notation, along with parsers and converters. Turns out writing beautiful renderers is hard, and it can get quite messy with the variety of sheets out there. I haven't yet had the motivation to finish the code, so instead for some peace of mind, I'm documenting the envisioned notation here.
 
-## Stave
+## Staves
 
 ![](stave.svg)
 
@@ -12,19 +12,17 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 * [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by vertical lines.
 * [Time signatures](https://en.wikipedia.org/wiki/Time_signature) and [key signatures](https://en.wikipedia.org/wiki/Key_signature) are not shown.
 
-## Note
+## Notes
 
-### Head
-
-#### Natural
+### Natural
 
 ![](natural.svg)
 
-#### Sharp
+### Sharp
 
 ![](sharp.svg)
 
-#### Flat
+### Flat
 
 ![](flat.svg)
 
