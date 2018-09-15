@@ -6,6 +6,8 @@ I wanted to create a simple, consistent music notation, along with parsers and c
 
 ## Stave
 
+![](stem.svg)
+
 ## Note
 
 ### Head
