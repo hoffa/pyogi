@@ -10,7 +10,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Staves
 
-![](staff.svg)
+![Staff](staff.svg)
 
 * Thick lines always represent [C notes](https://en.wikipedia.org/wiki/C_(musical_note)), no matter the [key](https://en.wikipedia.org/wiki/Key_(music)).
 * [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by vertical lines.
@@ -22,20 +22,20 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ### Natural
 
-![](natural.svg)
+![Natural](natural.svg)
 
 ### Sharp
 
-![](sharp.svg)
+![Sharp](sharp.svg)
 
 ### Flat
 
-![](flat.svg)
+![Flat](flat.svg)
 
 ### Stem length
 
-Assuming `d` is the note value (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `(log2(1 / d) + 1) * h`. If `d` is 1, the stem length is 0.
+Assuming `d` is the note value (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `(log₂(1 / d) + 1) * h`. If `d` is 1, the stem length is 0.
 
-For example, a [quarter note](https://en.wikipedia.org/wiki/Quarter_note) will have a stem length of `log2(1 / 0.25) + 1 = 3` staff line gaps, an [eighth note](https://en.wikipedia.org/wiki/Eighth_note) will have a length of `log(1 / 0.125) + 1 = 4` staff line gaps, etc.
+For example, a [quarter note](https://en.wikipedia.org/wiki/Quarter_note) will have a stem length of `log₂(1 / 0.25) + 1 = 3` staff line gaps, an [eighth note](https://en.wikipedia.org/wiki/Eighth_note) will have a length of `log₂(1 / 0.125) + 1 = 4` staff line gaps, etc.
 
 The longer the note, the shorter the stem.
