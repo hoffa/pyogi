@@ -14,7 +14,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Usage
 
-I've included a barebones parser and renderer. I'm trying to keep the code as short and simple as possible. I don't want to deal with wrapping, justification and the plethora of other visual adjustments at this point.
+I've included a barebones parser and renderer. I'm trying to keep the code as short and simple as possible, and focus on ironing out the worst of issues. I don't want to deal with wrapping, justification and the plethora of other visual adjustments at this point.
 
 Here's the basic usage:
 
