@@ -12,7 +12,9 @@ I wanted to create a simple and consistent music notation, along with parsers, c
 
 This is written from the perspective of a clueless piano beginner who just wants to play.
 
-## Staves
+## Format
+
+### Staves
 
 ![Staff](media/staff.svg)
 
@@ -21,7 +23,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 * [Time signatures](https://en.wikipedia.org/wiki/Time_signature) and [key signatures](https://en.wikipedia.org/wiki/Key_signature) are not shown.
 * Changes in [octave](https://en.wikipedia.org/wiki/Octave) are indicated using a signed number at the start of the measure.
 
-## Notes
+### Notes
 
 [Note value](https://en.wikipedia.org/wiki/Note_value) and [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) are encoded in the shape of the note.
 
