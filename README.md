@@ -12,6 +12,16 @@ I wanted to create a simple and consistent music notation, along with parsers, c
 
 This is written from the perspective of a clueless piano beginner who just wants to play.
 
+## Usage
+
+I've included a barebones parser and renderer. I'm trying to keep the code as short and simple as possible. I don't want to deal with wrapping, justification and the plethora of other visual adjustments at this point.
+
+Here's the basic usage:
+
+```shell
+./parse.py song.mxl | ./render.py
+```
+
 ## Format
 
 ### Staves
