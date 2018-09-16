@@ -2,6 +2,8 @@
 
 # 🎵 notation
 
+[![Build Status](https://travis-ci.org/hoffa/notation.svg?branch=master)](https://travis-ci.org/hoffa/notation)
+
 Reading music is hard.
 
 I got frustrated with the inconsistencies and (what I perceived as) unnecessary complexity in modern music notation. All I want to know is where to put my fingers. Note length, tempo, velocity, progression and other stuff are minor worries in comparison. Those things can be _felt_, without learning.
