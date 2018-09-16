@@ -9,17 +9,16 @@ import svgwrite
 
 NUM_NOTES = 7
 
+MARGIN_SIZE = 100
+WHOLE_NOTE_WIDTH = 200
 STAFF_SPACE_HEIGHT = 10
+
+NOTE_SIZE = 0.95 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE_HEIGHT = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
 PART_HEIGHT = 5 * STAFF_HEIGHT
-
 LINE_WIDTH = 1
 THICK_LINE_WIDTH = 2 * LINE_WIDTH
-NOTE_SIZE = 0.95 * STAFF_SPACE_HEIGHT
-
-MARGIN_SIZE = 100
-WHOLE_NOTE_WIDTH = 200
 
 
 class SVG:
@@ -148,9 +147,9 @@ def get_notes_width(notes):
     return max(note["time"] + note["duration"] for note in notes)
 
 
-def render(score):
+def main():
     y = 0
-    for part in score:
+    for part in json.load(sys.stdin):
         x = 0
         for notes in part:
             width = get_notes_width(notes) * WHOLE_NOTE_WIDTH
@@ -159,10 +158,6 @@ def render(score):
             x += width
         y += PART_HEIGHT
     svg.export_pdf("out.pdf", x, y)
-
-
-def main():
-    render(json.load(sys.stdin))
 
 
 if __name__ == "__main__":
