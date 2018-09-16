@@ -49,6 +49,7 @@ class SVG:
             parent_width=width + (2 * self.margin),
             parent_height=height + (2 * self.margin),
         )
+        print(f"Rendered to {filename}")
 
 
 svg = SVG(MARGIN_SIZE)
