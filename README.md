@@ -1,4 +1,4 @@
-![Header](header.svg)
+![Header](media/header.svg)
 
 # 🎵 notation
 
@@ -12,7 +12,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Staves
 
-![Staff](staff.svg)
+![Staff](media/staff.svg)
 
 * Thick lines always represent [C notes](https://en.wikipedia.org/wiki/C_(musical_note)), no matter the [key](https://en.wikipedia.org/wiki/Key_(music)).
 * [Measures](https://en.wikipedia.org/wiki/Bar_(music)) are separated by vertical lines.
@@ -25,7 +25,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 [Natural](https://en.wikipedia.org/wiki/Natural_(music)), [sharp](https://en.wikipedia.org/wiki/Sharp_(music)) and [flat](https://en.wikipedia.org/wiki/Flat_(music)) notes have the following shapes:
 
-![Notes](notes.svg)
+![Notes](media/notes.svg)
 
 ### Rests
 
