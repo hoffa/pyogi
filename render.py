@@ -32,15 +32,13 @@ class SVG:
         return element
 
     def line(self, start, end, line_width):
-        return self.add(
-            self.svg.line(start, end, stroke="black", stroke_width=line_width)
-        )
+        return self.add(self.svg.line(start, end, stroke_width=line_width))
 
     def polygon(self, points):
-        return self.add(self.svg.polygon(points, fill="black"))
+        return self.add(self.svg.polygon(points))
 
     def ellipse(self, center, r):
-        return self.add(self.svg.ellipse(center, r, fill="black"))
+        return self.add(self.svg.ellipse(center, r))
 
     def text(self, origin, s):
         return self.add(self.svg.text(s, insert=origin))
