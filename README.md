@@ -27,7 +27,7 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ![Notes](notes.svg)
 
-## Rests
+### Rests
 
 [Rests](https://en.wikipedia.org/wiki/Rest_(music)) aren't explicitly displayed.
 
