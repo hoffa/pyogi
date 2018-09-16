@@ -21,11 +21,15 @@ This is written from the perspective of a clueless piano beginner who just wants
 
 ## Notes
 
-[Note value](https://en.wikipedia.org/wiki/Note_value) and [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) are encoded in the shape of the note. There are no fancy wiggles or [rest symbols](https://en.wikipedia.org/wiki/Rest_(music)).
+[Note value](https://en.wikipedia.org/wiki/Note_value) and [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) are encoded in the shape of the note.
 
 [Natural](https://en.wikipedia.org/wiki/Natural_(music)), [sharp](https://en.wikipedia.org/wiki/Sharp_(music)) and [flat](https://en.wikipedia.org/wiki/Flat_(music)) notes have the following shapes:
 
 ![Notes](notes.svg)
+
+## Rests
+
+[Rests](https://en.wikipedia.org/wiki/Rest_(music)) aren't explicitly displayed.
 
 ### Stem length
 
