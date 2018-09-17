@@ -19,6 +19,7 @@ STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
 PART_HEIGHT = 5 * STAFF_HEIGHT
 LINE_WIDTH = 1
 THICK_LINE_WIDTH = 2 * LINE_WIDTH
+STAFF_COLOR = "lightgray"
 
 
 class SVG:
@@ -30,14 +31,25 @@ class SVG:
         self.svg.add(element).translate(self.margin, self.margin)
         return element
 
-    def line(self, start, end, line_width):
-        return self.add(self.svg.line(start, end, stroke_width=line_width))
+    def line(self, start, end, line_width, stroke="black"):
+        return self.add(
+            self.svg.line(start, end, stroke_width=line_width, stroke=stroke)
+        )
 
-    def polygon(self, points):
-        return self.add(self.svg.polygon(points))
+    def circle(self, center, r):
+        return self.add(self.svg.circle(center, r, fill="black"))
 
-    def ellipse(self, center, r):
-        return self.add(self.svg.ellipse(center, r))
+    def hollow_circle(self, center, r, stroke_width):
+        return self.add(
+            self.svg.circle(
+                center, r, stroke_width=stroke_width, stroke="black", fill="white"
+            )
+        )
+
+    def half_circle(self, x, y, r, angle_dir):
+        p = svgwrite.path.Path(d=("M", x - r, y))
+        p.push_arc((2 * r, 0), 0, 1, 0, angle_dir=angle_dir)
+        return self.add(p)
 
     def text(self, origin, s):
         return self.add(self.svg.text(s, insert=origin))
@@ -62,40 +74,27 @@ def get_stem_height(length):
 
 
 def draw_notehead_flat(x, y):
-    width = 1.5 * NOTE_SIZE
-    svg.polygon(
-        [
-            (x, y),
-            (x + (0.55 * width), y),
-            (x + width, y + NOTE_SIZE),
-            (x + (0.45 * width), y + NOTE_SIZE),
-        ]
-    ).translate(-0.5 * THICK_LINE_WIDTH, -0.5 * NOTE_SIZE)
+    svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
+    svg.half_circle(x, y, NOTE_SIZE / 2, "-")
 
 
 def draw_notehead_sharp(x, y):
-    svg.polygon(
-        [(x, y), (x + (1.5 * NOTE_SIZE), y + (0.5 * NOTE_SIZE)), (x, y + NOTE_SIZE)]
-    ).translate(-0.5 * THICK_LINE_WIDTH, -0.5 * NOTE_SIZE)
+    svg.hollow_circle((x, y), (NOTE_SIZE - THICK_LINE_WIDTH) / 2, THICK_LINE_WIDTH)
+    svg.half_circle(x, y, NOTE_SIZE / 2, "+")
 
 
 def draw_notehead_natural(x, y):
-    head = svg.ellipse((x, y), (0.6 * NOTE_SIZE, 0.42 * NOTE_SIZE))
-    head.translate(0.462 * NOTE_SIZE)
-    head.rotate(-35, center=(x, y))
+    svg.circle((x, y), NOTE_SIZE / 2)
 
 
 def draw_note(x, y, accidental, length):
-    stem_y = y
+    svg.line((x, y), (x, y + get_stem_height(length)), THICK_LINE_WIDTH)
     if accidental == "flat":
-        stem_y -= 0.5 * NOTE_SIZE
         draw_notehead_flat(x, y)
     elif accidental == "sharp":
         draw_notehead_sharp(x, y)
     elif accidental == "natural":
-        stem_y += 0.15 * NOTE_SIZE
         draw_notehead_natural(x, y)
-    svg.line((x, stem_y), (x, y + get_stem_height(length)), THICK_LINE_WIDTH)
 
 
 def line_width_at_index(index):
@@ -114,7 +113,12 @@ def draw_ledger_lines(x, y, index):
         line_width = line_width_at_index(i)
         if line_width > 0:
             line_y = y - (i * HALF_STAFF_SPACE_HEIGHT)
-            svg.line((x - NOTE_SIZE, line_y), (x + (2 * NOTE_SIZE), line_y), line_width)
+            svg.line(
+                (x - NOTE_SIZE, line_y),
+                (x + NOTE_SIZE, line_y),
+                line_width,
+                stroke=STAFF_COLOR,
+            )
 
 
 def draw_notes(x, y, notes):
@@ -135,13 +139,18 @@ def draw_staff(x, y, width):
         line_width = line_width_at_index(i)
         if line_width > 0:
             line_y = y + STAFF_HEIGHT - (i * HALF_STAFF_SPACE_HEIGHT)
-            svg.line((x, line_y), (x + width, line_y), line_width)
+            svg.line((x, line_y), (x + width, line_y), line_width, stroke=STAFF_COLOR)
 
 
 def draw_staves(x, y, width):
     for i in (1, 2):
         draw_staff(x, y + (i * STAFF_HEIGHT), width)
-    svg.line((x, y + STAFF_HEIGHT), (x, y + (3 * STAFF_HEIGHT)), LINE_WIDTH)
+    svg.line(
+        (x, y + STAFF_HEIGHT),
+        (x, y + (3 * STAFF_HEIGHT)),
+        LINE_WIDTH,
+        stroke=STAFF_COLOR,
+    )
 
 
 def get_notes_width(notes):
