@@ -10,15 +10,15 @@ import svgwrite
 NUM_NOTES = 7
 
 MARGIN_SIZE = 100
-WHOLE_NOTE_WIDTH = 200
+WHOLE_NOTE_WIDTH = 250
 STAFF_SPACE_HEIGHT = 10
 
-NOTE_SIZE = 0.95 * STAFF_SPACE_HEIGHT
+NOTE_SIZE = 0.9 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE_HEIGHT = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
 PART_HEIGHT = 5 * STAFF_HEIGHT
 LINE_WIDTH = 1
-THICK_LINE_WIDTH = 2 * LINE_WIDTH
+THICK_LINE_WIDTH = 1.5 * LINE_WIDTH
 STAFF_COLOR = "lightgray"
 
 
@@ -70,7 +70,7 @@ svg = SVG(MARGIN_SIZE)
 def get_stem_height(length):
     if length == 1:
         return 0
-    return (math.log2(1 / length) + 1) * STAFF_SPACE_HEIGHT
+    return math.log2(1 / length) * STAFF_SPACE_HEIGHT
 
 
 def draw_notehead_flat(x, y):
