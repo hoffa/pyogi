@@ -1,5 +1,3 @@
-![Header](media/header.svg)
-
 # 🎵 notation
 
 [![Build Status](https://travis-ci.org/hoffa/notation.svg?branch=master)](https://travis-ci.org/hoffa/notation)
@@ -13,6 +11,20 @@ I wanted to create a simple and consistent music notation, along with parsers, c
 This is written from the perspective of a clueless piano beginner who just wants to play.
 
 ⚠️ This is a work in progress, so many things will likely change.
+
+## Comparison
+
+I haven't spent much time on tuning the rendering; this is just to give a rough idea.
+
+### Modern notation
+
+![](media/bach.png)
+
+([source](https://musescore.com/user/94656/scores/891176))
+
+### This notation
+
+![](media/example.svg)
 
 ## Usage
 
