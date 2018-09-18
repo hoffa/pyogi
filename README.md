@@ -61,8 +61,8 @@ Here's the basic usage:
 
 ### Stem length
 
-Assuming `d` is the note value (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `(log₂(1 / d) + 1) * h`. If `d` is 1, the stem length is 0.
+Assuming `d` is the note value (where 1 is a whole note) and `h` is the size of the gap between staff lines, the stem length is `log₂(1 / d) * h`.
 
-For example, a [whole note](https://en.wikipedia.org/wiki/Whole_note) will have no stem, a [quarter note](https://en.wikipedia.org/wiki/Quarter_note) will have a stem length of `log₂(1 / 0.25) + 1 = 3` staff line gaps, an [eighth note](https://en.wikipedia.org/wiki/Eighth_note) will have a length of `log₂(1 / 0.125) + 1 = 4` staff line gaps, etc.
+For example, a [whole note](https://en.wikipedia.org/wiki/Whole_note) will have no stem, a [quarter note](https://en.wikipedia.org/wiki/Quarter_note) will have a stem length of `log₂(1 / 0.25) = 2` staff line gaps, an [eighth note](https://en.wikipedia.org/wiki/Eighth_note) will have a length of `log₂(1 / 0.125) = 3` staff line gaps, etc.
 
 The longer the note, the shorter the stem.
