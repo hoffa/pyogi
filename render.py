@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import json
-import math
 import sys
 
 import cairosvg
