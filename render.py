@@ -13,12 +13,12 @@ MARGIN_SIZE = 100
 WHOLE_NOTE_WIDTH = 250
 STAFF_SPACE_HEIGHT = 10
 
-NOTE_SIZE = 0.9 * STAFF_SPACE_HEIGHT
+NOTE_SIZE = 0.8 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE_HEIGHT = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
 PART_HEIGHT = 5 * STAFF_HEIGHT
 LINE_WIDTH = 1
-THICK_LINE_WIDTH = 1.5 * LINE_WIDTH
+THICK_LINE_WIDTH = 2 * LINE_WIDTH
 STAFF_COLOR = "lightgray"
 
 
@@ -73,7 +73,7 @@ def draw_notehead_flat(x, y):
 
 
 def draw_notehead_sharp(x, y):
-    svg.hollow_circle((x, y), (NOTE_SIZE - THICK_LINE_WIDTH) / 2, THICK_LINE_WIDTH)
+    svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
     svg.half_circle(x, y, NOTE_SIZE / 2, "+")
 
 
