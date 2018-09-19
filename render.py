@@ -67,12 +67,6 @@ class SVG:
 svg = SVG(MARGIN_SIZE)
 
 
-def get_stem_height(length):
-    if length == 1:
-        return 0
-    return math.log2(1 / length) * STAFF_SPACE_HEIGHT
-
-
 def draw_notehead_flat(x, y):
     svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
     svg.half_circle(x, y, NOTE_SIZE / 2, "-")
@@ -88,7 +82,7 @@ def draw_notehead_natural(x, y):
 
 
 def draw_note(x, y, accidental, length):
-    svg.line((x, y), (x, y + get_stem_height(length)), THICK_LINE_WIDTH)
+    svg.line((x, y), (x + (length * WHOLE_NOTE_WIDTH), y), LINE_WIDTH)
     if accidental == "flat":
         draw_notehead_flat(x, y)
     elif accidental == "sharp":
