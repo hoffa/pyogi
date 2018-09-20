@@ -61,4 +61,4 @@ Here's the basic usage:
 
 ### Stem length
 
-The stem is horizontal, and as long as the note's duration.
+The stem is horizontal, and as long as the note duration.
