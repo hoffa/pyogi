@@ -50,9 +50,6 @@ class SVG:
         p.push_arc((2 * r, 0), 0, 1, 0, angle_dir=angle_dir)
         return self.add(p)
 
-    def text(self, origin, s):
-        return self.add(self.svg.text(s, insert=origin))
-
     def export_pdf(self, filename, width, height):
         cairosvg.svg2pdf(
             bytestring=self.svg.tostring(),
@@ -104,15 +101,11 @@ def draw_ledger_lines(x, y, index):
 
 def draw_notes(x, y, notes):
     y += 2 * STAFF_HEIGHT
-    for i, note in enumerate(notes):
+    for note in notes:
         note_x = x + (note["time"] * WHOLE_NOTE_WIDTH)
         note_y = y - (note["index"] * HALF_STAFF_SPACE_HEIGHT)
         draw_ledger_lines(note_x, y, note["index"])
         draw_note(note_x, note_y, note["accidental"], note["duration"])
-        if i > 0:
-            delta_shift = notes[i]["shift"] - notes[i - 1]["shift"]
-            if delta_shift:
-                svg.text((note_x, y), delta_shift)
 
 
 def draw_staff(x, y, width):
