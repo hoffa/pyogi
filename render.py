@@ -66,28 +66,16 @@ class SVG:
 svg = SVG(MARGIN_SIZE)
 
 
-def draw_notehead_flat(x, y):
-    svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
-    svg.half_circle(x, y, NOTE_SIZE / 2, "-")
-
-
-def draw_notehead_sharp(x, y):
-    svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
-    svg.half_circle(x, y, NOTE_SIZE / 2, "+")
-
-
-def draw_notehead_natural(x, y):
-    svg.circle((x, y), NOTE_SIZE / 2)
-
-
 def draw_note(x, y, accidental, length):
     svg.line((x, y), (x + (length * WHOLE_NOTE_WIDTH), y), LINE_WIDTH)
     if accidental == "flat":
-        draw_notehead_flat(x, y)
+        svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
+        svg.half_circle(x, y, NOTE_SIZE / 2, "-")
     elif accidental == "sharp":
-        draw_notehead_sharp(x, y)
+        svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
+        svg.half_circle(x, y, NOTE_SIZE / 2, "+")
     elif accidental == "natural":
-        draw_notehead_natural(x, y)
+        svg.circle((x, y), NOTE_SIZE / 2)
 
 
 def line_width_at_index(index):
