@@ -51,6 +51,7 @@ class SVG:
         return self.add(p)
 
     def export_pdf(self, filename, width, height):
+        self.svg.saveas("out.svg")
         cairosvg.svg2pdf(
             bytestring=self.svg.tostring(),
             write_to=filename,
@@ -79,10 +80,9 @@ def line_width_at_index(index):
     index %= NUM_NOTES
     if index == 0:
         return THICK_LINE_WIDTH
-    elif index % 2 == 0:
+    if index in (2, 5):
         return LINE_WIDTH
-    else:
-        return 0
+    return 0
 
 
 def draw_ledger_lines(x, y, index):
