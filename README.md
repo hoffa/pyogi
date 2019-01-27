@@ -10,7 +10,7 @@ I wanted to create a simple and consistent music notation, along with parsers, c
 
 This is written from the perspective of a clueless piano beginner who just wants to play.
 
-⚠️ This is a work in progress, so many things will likely change.
+This is a work in progress, so many things will likely change.
 
 ## Comparison
 
