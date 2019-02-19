@@ -1,4 +1,4 @@
-# 🎵 notation
+# notation
 
 [![Build Status](https://travis-ci.org/hoffa/notation.svg?branch=master)](https://travis-ci.org/hoffa/notation)
 
