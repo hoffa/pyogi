@@ -18,7 +18,8 @@ STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
 PART_HEIGHT = 5 * STAFF_HEIGHT
 LINE_WIDTH = 1
 THICK_LINE_WIDTH = 2 * LINE_WIDTH
-STAFF_COLOR = "lightgray"
+COLOR = "blue"
+STAFF_COLOR = "black"
 
 
 class SVG:
@@ -30,18 +31,18 @@ class SVG:
         self.svg.add(element).translate(self.margin, self.margin)
         return element
 
-    def line(self, start, end, line_width, stroke="black"):
+    def line(self, start, end, line_width, stroke=COLOR):
         return self.add(
             self.svg.line(start, end, stroke_width=line_width, stroke=stroke)
         )
 
     def circle(self, center, r):
-        return self.add(self.svg.circle(center, r, fill="black"))
+        return self.add(self.svg.circle(center, r, fill=COLOR))
 
     def hollow_circle(self, center, r, stroke_width):
         return self.add(
             self.svg.circle(
-                center, r, stroke_width=stroke_width, stroke="black", fill="white"
+                center, r, stroke_width=stroke_width, stroke=COLOR, fill="white"
             )
         )
 
@@ -65,7 +66,7 @@ svg = SVG(MARGIN_SIZE)
 
 
 def draw_note(x, y, accidental, length):
-    svg.line((x, y), (x + (length * WHOLE_NOTE_WIDTH), y), LINE_WIDTH)
+    svg.line((x, y), (x + (length * WHOLE_NOTE_WIDTH), y), THICK_LINE_WIDTH)
     if accidental == "flat":
         svg.hollow_circle((x, y), (NOTE_SIZE - LINE_WIDTH) / 2, LINE_WIDTH)
         svg.half_circle(x, y, NOTE_SIZE / 2, "-")
