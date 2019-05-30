@@ -15,7 +15,7 @@ def pitch_accidental(pitch):
     return "natural"
 
 
-def process_part(part):
+def notes(part):
     for note in part.flat.notes:
         for pitch in note.pitches:
             yield {
@@ -28,7 +28,7 @@ def process_part(part):
 
 def parse(filename):
     for part in music21.converter.parse(filename).parts:
-        yield list(process_part(part))
+        yield list(notes(part))
 
 
 def main():
