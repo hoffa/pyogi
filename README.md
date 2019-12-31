@@ -1,7 +1,5 @@
 # notation
 
-[![Build Status](https://travis-ci.org/hoffa/notation.svg?branch=master)](https://travis-ci.org/hoffa/notation)
-
 I got frustrated with the inconsistencies and (what I perceived as) unnecessary complexity in modern music notation. All I want to know is where to put my fingers. Note length, tempo, velocity, progression and other stuff are minor worries in comparison.
 
 I wanted to create a simple and consistent music notation, along with parsers, converters and whatnot. Turns out writing beautiful renderers is tough, and it can get quite ugly with edge cases and the variety of sheets out there. I haven't yet had the motivation to finish anything considerable, so instead for some peace of mind, I'm documenting the envisioned notation here.
