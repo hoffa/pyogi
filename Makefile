@@ -1,7 +1,7 @@
 init:
 	python3 -m venv .venv
 	.venv/bin/pip install -r requirements.txt
-	.venv/bin/pip install mypy pyflakes isort
+	.venv/bin/pip install black mypy pyflakes isort
 
 format:
 	.venv/bin/isort src
