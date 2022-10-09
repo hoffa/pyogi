@@ -45,6 +45,7 @@ def main() -> None:
     parser.add_argument("file")
     args = parser.parse_args()
 
+    # TODO: Sort deterministically so can test it
     print(json.dumps(list(parse(args.file))))
 
 
