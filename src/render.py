@@ -5,7 +5,7 @@ from typing import List, cast
 from parse import Note
 from svg import SVG, Point
 
-svg = SVG()
+svg = SVG(margin=50)
 
 
 NUM_NOTES = 7
@@ -69,6 +69,7 @@ def draw_staves(origin: Point, count: int, width: int) -> None:
         draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
 
 
+# TODO: get necessary staff from top
 def main() -> None:
     score = cast(List[Note], json.load(sys.stdin))
     width = max(note["time"] for note in score) * WHOLE_NOTE_WIDTH
