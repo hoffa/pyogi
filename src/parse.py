@@ -4,7 +4,7 @@ from typing import Iterator, List, Literal, TypedDict
 
 import music21
 from music21.pitch import Pitch
-from music21.stream import Score, Part
+from music21.stream import Part, Score
 
 Accidental = Literal["natural", "flat", "sharp"]
 
@@ -49,4 +49,5 @@ def main() -> None:
     print(json.dumps(list(parse(args.file))))
 
 
-main()
+if __name__ == "__main__":
+    main()

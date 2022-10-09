@@ -4,14 +4,14 @@ init:
 	.venv/bin/pip install mypy pyflakes isort
 
 format:
-	.venv/bin/isort .
-	.venv/bin/black .
+	.venv/bin/isort src
+	.venv/bin/black src
 
 check:
-	.venv/bin/mypy --strict --implicit-reexport *.py
-	.venv/bin/pyflakes *.py
-	.venv/bin/isort --check .
-	.venv/bin/black --check .
+	.venv/bin/mypy --strict --implicit-reexport src
+	.venv/bin/pyflakes src
+	.venv/bin/isort --check src
+	.venv/bin/black --check src
 
 clean:
 	rm -r .venv
