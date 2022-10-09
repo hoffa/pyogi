@@ -13,6 +13,7 @@ NUM_NOTES = 7
 
 WHOLE_NOTE_WIDTH = 50
 STAFF_SPACE_HEIGHT = 10
+EDGE_NOTE_PADDING = 20
 HALF_STAFF_SPACE_HEIGHT = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
 
@@ -77,8 +78,8 @@ def main() -> None:
     # TODO: More accurate so it knows e.g. if all notes are within same octave or not
     num_staves = math.ceil((max_note - min_note) / NUM_NOTES) + 1
     width = max(note["time"] for note in score) * WHOLE_NOTE_WIDTH
-    draw_staves(Point(0, 0), num_staves, width)
-    draw_notes(Point(0, (num_staves - 1) * STAFF_HEIGHT), score)
+    draw_staves(Point(0, 0), num_staves, width + (2 * EDGE_NOTE_PADDING))
+    draw_notes(Point(EDGE_NOTE_PADDING, (num_staves - 1) * STAFF_HEIGHT), score)
     print(str(svg))
 
 
