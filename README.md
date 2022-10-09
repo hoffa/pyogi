@@ -9,5 +9,6 @@
 
 ## FAQ
 
-1. **How do I know which key to play?**
-  Play what sounds good.
+### How do I know which key to play?
+
+Play what sounds good.
