@@ -1,3 +1,0 @@
-cairosvg
-music21
-svgwrite
