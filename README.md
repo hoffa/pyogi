@@ -21,7 +21,7 @@ And here using the proposed notation:
 - Circles are naturals (i.e. white keys).
 - Triangles are sharps (i.e. black keys).
 
-There are no flats, rests, note values, time signatures, key signatures, etc.
+There are no explicit flats, rests, note values, time signatures, key signatures, etc.
 
 The notation gets you started, you do the rest. Play what sounds good.
 
