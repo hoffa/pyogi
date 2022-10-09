@@ -5,6 +5,8 @@
 
 A simpler music notation for piano learners.
 
+Under development, so changes are expected.
+
 ## Comparison
 
 Here's the beginning of Beethoven's Für Elise in modern musical notation:
