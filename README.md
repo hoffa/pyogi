@@ -5,19 +5,25 @@
 
 A simpler music notation for piano learners.
 
-## Example
+## Comparison
 
-Here's the beginning of Beethoven's Für Elise:
+Here's the beginning of Beethoven's Für Elise in modern musical notation:
+
+![](https://raw.githubusercontent.com/hoffa/notation/main/media/modern.png)
+
+And here using the proposed notation:
 
 ![](https://raw.githubusercontent.com/hoffa/notation/main/media/example.svg)
 
-All you need to know is:
+## The notation in 1 minute
 
 - Thick lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
 - Circles are naturals (i.e. white keys).
 - Triangles are sharps (i.e. black keys).
 
-There are no flats, rests, note values, time signatures, key signatures, etc. Play what sounds good.
+There are no flats, rests, note values, time signatures, key signatures, etc.
+
+The notation gets you started, you do the rest. Play what sounds good.
 
 ## Usage
 
