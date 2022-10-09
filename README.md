@@ -11,7 +11,7 @@ Here's the beginning of Beethoven's Für Elise in modern musical notation:
 
 ![](https://raw.githubusercontent.com/hoffa/notation/main/media/modern.png)
 
-And here using the proposed notation:
+And here using the proposed notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/fur-elise.svg) for the full composition):
 
 ![](https://raw.githubusercontent.com/hoffa/notation/main/media/example.svg)
 
