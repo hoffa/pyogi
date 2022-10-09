@@ -12,7 +12,7 @@
 ## Usage
 
 ```bash
-./render.sh my-score.mxl
+./render.sh score.mxl > score.svg
 ```
 
 ## FAQ
