@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/hoffa/notation/main/media/example.svg)
+
 # notation
 
 [![Tests](https://github.com/hoffa/notation/actions/workflows/build.yml/badge.svg)](https://github.com/hoffa/notation/actions/workflows/build.yml)
