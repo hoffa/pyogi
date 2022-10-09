@@ -1,3 +1,2 @@
-cairosvg==2.5.2
 music21==8.1.0
 svgwrite==1.4.3
