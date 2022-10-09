@@ -1,10 +1,10 @@
 import argparse
 import json
-from typing import Iterator, List, Literal, TypedDict
+from typing import Iterator, Literal, TypedDict
 
 import music21
 from music21.pitch import Pitch
-from music21.stream import Part, Score
+from music21.stream import Score
 
 Accidental = Literal["natural", "flat", "sharp"]
 
@@ -24,21 +24,17 @@ def get_pitch_accidental(pitch: Pitch) -> Accidental:
     return "natural"
 
 
-def get_notes(part: Part) -> Iterator[Note]:
-    for note in part.flat.notes:
-        for pitch in note.pitches:
-            yield Note(
-                time=float(note.offset),
-                note=pitch.diatonicNoteNum - 1,
-                accidental=get_pitch_accidental(pitch),
-            )
-
-
-def parse(filename: str) -> Iterator[List[Note]]:
+def parse(filename: str) -> Iterator[Note]:
     score = music21.converter.parse(filename)
     if isinstance(score, Score):
         for part in score.parts:
-            yield list(get_notes(part))
+            for note in part.flat.notes:
+                for pitch in note.pitches:
+                    yield Note(
+                        time=float(note.offset),
+                        note=pitch.diatonicNoteNum - 1,
+                        accidental=get_pitch_accidental(pitch),
+                    )
 
 
 def main() -> None:

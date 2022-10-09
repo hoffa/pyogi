@@ -78,10 +78,9 @@ def draw_staves(origin: Point, count: int, width: int) -> None:
 
 
 def main() -> None:
-    score = cast(List[List[Note]], json.load(sys.stdin))
+    score = cast(List[Note], json.load(sys.stdin))
     draw_staves(Point(0, 0), 20, 1000)
-    for part in score:
-        draw_notes(Point(0, 10 * STAFF_HEIGHT), part)
+    draw_notes(Point(0, 10 * STAFF_HEIGHT), score)
     print(str(svg))
 
 
