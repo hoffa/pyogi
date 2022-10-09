@@ -9,6 +9,12 @@
 - No flats (only natural and sharp).
 - Thick line is always C, regardless of the key.
 
+## Usage
+
+```bash
+./render.sh my-score.mxl
+```
+
 ## FAQ
 
 ### How do I know which key to play?
