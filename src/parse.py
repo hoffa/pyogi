@@ -3,10 +3,9 @@ import json
 from typing import Iterator, Literal, TypedDict
 
 import music21
-from music21.pitch import Pitch
 from music21.stream import Score
 
-Accidental = Literal["natural", "flat", "sharp"]
+Accidental = Literal["natural", "sharp"]
 
 
 class Note(TypedDict):
@@ -15,25 +14,29 @@ class Note(TypedDict):
     accidental: Accidental
 
 
-def get_pitch_accidental(pitch: Pitch) -> Accidental:
-    if pitch.accidental:
-        if "sharp" in pitch.accidental.name:
-            return "sharp"
-        if "flat" in pitch.accidental.name:
-            return "flat"
-    return "natural"
-
-
 def parse(filename: str) -> Iterator[Note]:
     score = music21.converter.parse(filename)
     if isinstance(score, Score):
         for part in score.parts:
             for note in part.flat.notes:
+                time = float(note.offset)
                 for pitch in note.pitches:
+                    note = pitch.diatonicNoteNum - 1
+                    accidental = (
+                        pitch.accidental.name if pitch.accidental else "natural"
+                    )
+                    # Convert flats to sharps
+                    # TODO: Check correct and handle doubles
+                    if "flat" in accidental:
+                        note -= 1
+                        accidental = "sharp"
+                    # TODO: Handle doubles; this might be wrong
+                    if "sharp" in accidental:
+                        accidental = "sharp"
                     yield Note(
-                        time=float(note.offset),
-                        note=pitch.diatonicNoteNum - 1,
-                        accidental=get_pitch_accidental(pitch),
+                        time=time,
+                        note=note,
+                        accidental=accidental,
                     )
 
 

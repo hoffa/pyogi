@@ -31,14 +31,6 @@ def draw_note(note: Note, point: Point) -> None:
                 Point(point.x + HALF, point.y),
             ],
         )
-    elif accidental == "flat":
-        svg.polygon(
-            [
-                Point(point.x + HALF, point.y - HALF),
-                Point(point.x + HALF, point.y + HALF),
-                Point(point.x - HALF, point.y),
-            ],
-        )
 
 
 def line_width_at_index(index: int) -> int:
