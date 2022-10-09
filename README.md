@@ -6,3 +6,8 @@
 - No explicit note durations.
 - No flats (only natural and sharp).
 - Thick line is always C, regardless of the key.
+
+## FAQ
+
+1. **How do I know which key to play?**
+  Play what sounds good.
