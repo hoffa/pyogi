@@ -1,4 +1,5 @@
 import json
+import math
 import sys
 from typing import List, cast
 
@@ -69,12 +70,15 @@ def draw_staves(origin: Point, count: int, width: int) -> None:
         draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
 
 
-# TODO: get necessary staff from top
 def main() -> None:
     score = cast(List[Note], json.load(sys.stdin))
+    min_note = min(note["note"] for note in score)
+    max_note = max(note["note"] for note in score)
+    # TODO: More accurate so it knows e.g. if all notes are within same octave or not
+    num_staves = math.ceil((max_note - min_note) / NUM_NOTES) + 1
     width = max(note["time"] for note in score) * WHOLE_NOTE_WIDTH
-    draw_staves(Point(0, 0), 20, width)
-    draw_notes(Point(0, 10 * STAFF_HEIGHT), score)
+    draw_staves(Point(0, 0), num_staves, width)
+    draw_notes(Point(0, (num_staves - 1) * STAFF_HEIGHT), score)
     print(str(svg))
 
 
