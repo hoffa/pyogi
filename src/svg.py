@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import Any, List
 
 import svgwrite  # type: ignore
 
@@ -11,17 +11,17 @@ class Point:
 
 
 class SVG:
-    def __init__(self, margin) -> None:
+    def __init__(self, margin: int) -> None:
         self.svg = svgwrite.Drawing()
-        self.width = 0
-        self.height = 0
+        self.width: float = 0
+        self.height: float = 0
         self.margin = margin
 
     def _update_size(self, point: Point) -> None:
         self.width = max(self.width, point.x)
         self.height = max(self.height, point.y)
 
-    def _add(self, element):
+    def _add(self, element: Any) -> None:
         self.svg.add(element).translate(self.margin, self.margin)
 
     def line(

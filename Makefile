@@ -8,6 +8,7 @@ format:
 	.venv/bin/black src
 
 check:
+	./test.sh
 	.venv/bin/mypy --strict --implicit-reexport src
 	.venv/bin/pyflakes src
 	.venv/bin/isort --check src

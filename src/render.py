@@ -14,23 +14,20 @@ NUM_NOTES = 7
 WHOLE_NOTE_WIDTH = 50
 STAFF_SPACE_HEIGHT = 10
 EDGE_NOTE_PADDING = 20
-HALF_STAFF_SPACE_HEIGHT = STAFF_SPACE_HEIGHT / 2
-STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE_HEIGHT
-
-SIZE = STAFF_SPACE_HEIGHT
-HALF = SIZE / 2
+HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
+STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 
 
 def draw_note(note: Note, point: Point) -> None:
     accidental = note["accidental"]
     if accidental == "natural":
-        svg.circle(point, HALF)
+        svg.circle(point, HALF_STAFF_SPACE)
     elif accidental == "sharp":
         svg.polygon(
             [
-                Point(point.x - HALF, point.y - HALF),
-                Point(point.x - HALF, point.y + HALF),
-                Point(point.x + HALF, point.y),
+                Point(point.x - HALF_STAFF_SPACE, point.y - HALF_STAFF_SPACE),
+                Point(point.x - HALF_STAFF_SPACE, point.y + HALF_STAFF_SPACE),
+                Point(point.x + HALF_STAFF_SPACE, point.y),
             ],
         )
 
@@ -49,16 +46,16 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
     for note in notes:
         position = Point(
             origin.x + (note["time"] * WHOLE_NOTE_WIDTH),
-            origin.y - (note["note"] * HALF_STAFF_SPACE_HEIGHT),
+            origin.y - (note["note"] * HALF_STAFF_SPACE),
         )
         draw_note(note, position)
 
 
-def draw_staff(origin: Point, width: int) -> None:
+def draw_staff(origin: Point, width: float) -> None:
     for i in range(8):
         line_width = line_width_at_index(i)
         if line_width > 0:
-            line_y = origin.y + STAFF_HEIGHT - (i * HALF_STAFF_SPACE_HEIGHT)
+            line_y = origin.y + STAFF_HEIGHT - (i * HALF_STAFF_SPACE)
             svg.line(
                 Point(origin.x, line_y),
                 Point(origin.x + width, line_y),
@@ -66,7 +63,7 @@ def draw_staff(origin: Point, width: int) -> None:
             )
 
 
-def draw_staves(origin: Point, count: int, width: int) -> None:
+def draw_staves(origin: Point, count: int, width: float) -> None:
     for i in range(count):
         draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
 
