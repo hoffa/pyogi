@@ -4,7 +4,19 @@ from typing import Iterator, Literal
 import music21
 from music21.stream import Score
 
-Accidental = Literal["natural", "sharp"]
+# Only including full steps from
+# https://github.com/cuthbertLab/music21/blob/1025c6cc5703e27ad5eb924c0098e11e3dd04f3b/music21/pitch.py#L93-L107
+Accidental = Literal[
+    "natural",
+    "sharp",
+    "double-sharp",
+    "triple-sharp",
+    "quadruple-sharp",
+    "flat",
+    "double-flat",
+    "triple-flat",
+    "quadruple-flat",
+]
 
 
 @dataclass
