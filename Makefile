@@ -7,7 +7,7 @@ format:
 	.venv/bin/isort src
 	.venv/bin/black src
 
-check:
+test:
 	.venv/bin/mypy --strict --implicit-reexport src
 	./test.sh
 	.venv/bin/pyflakes src
