@@ -1,6 +1,5 @@
-import argparse
-import json
-from typing import Iterator, Literal, TypedDict
+from dataclasses import dataclass
+from typing import Iterator, Literal
 
 import music21
 from music21.stream import Score
@@ -8,12 +7,14 @@ from music21.stream import Score
 Accidental = Literal["natural", "sharp"]
 
 
-class Note(TypedDict):
+@dataclass
+class Note:
     time: float
     note: int
     accidental: Accidental
 
 
+# TODO: Sort deterministically so can test it
 def parse(filename: str) -> Iterator[Note]:
     score = music21.converter.parse(filename)
     if isinstance(score, Score):
@@ -38,16 +39,3 @@ def parse(filename: str) -> Iterator[Note]:
                         note=note,
                         accidental=accidental,
                     )
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("file")
-    args = parser.parse_args()
-
-    # TODO: Sort deterministically so can test it
-    print(json.dumps(list(parse(args.file))))
-
-
-if __name__ == "__main__":
-    main()

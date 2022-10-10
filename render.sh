@@ -5,4 +5,4 @@ if [ ! -d .venv ]; then
     make init
 fi
 
-.venv/bin/python src/parse.py "$1" | .venv/bin/python src/render.py
+.venv/bin/python src/main.py "$1"

@@ -1,7 +1,5 @@
-import json
 import math
-import sys
-from typing import List, cast
+from typing import List
 
 from parse import Note
 from svg import SVG, Point
@@ -19,7 +17,7 @@ STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 
 
 def draw_note(note: Note, point: Point) -> None:
-    accidental = note["accidental"]
+    accidental = note.accidental
     if accidental == "natural":
         svg.circle(point, HALF_STAFF_SPACE)
     elif accidental == "sharp":
@@ -45,8 +43,8 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
     origin.y += 2 * STAFF_HEIGHT  # Start from the middle
     for note in notes:
         position = Point(
-            origin.x + (note["time"] * WHOLE_NOTE_WIDTH),
-            origin.y - (note["note"] * HALF_STAFF_SPACE),
+            origin.x + (note.time * WHOLE_NOTE_WIDTH),
+            origin.y - (note.note * HALF_STAFF_SPACE),
         )
         draw_note(note, position)
 
@@ -68,17 +66,12 @@ def draw_staves(origin: Point, count: int, width: float) -> None:
         draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
 
 
-def main() -> None:
-    score = cast(List[Note], json.load(sys.stdin))
-    min_note = min(note["note"] for note in score)
-    max_note = max(note["note"] for note in score)
+def render(score: List[Note]) -> str:
+    min_note = min(note.note for note in score)
+    max_note = max(note.note for note in score)
     # TODO: More accurate so it knows e.g. if all notes are within same octave or not
     num_staves = math.ceil((max_note - min_note) / NUM_NOTES) + 1
-    width = max(note["time"] for note in score) * WHOLE_NOTE_WIDTH
+    width = max(note.time for note in score) * WHOLE_NOTE_WIDTH
     draw_staves(Point(0, 0), num_staves, width + (2 * EDGE_NOTE_PADDING))
     draw_notes(Point(EDGE_NOTE_PADDING, (num_staves - 1) * STAFF_HEIGHT), score)
-    print(str(svg))
-
-
-if __name__ == "__main__":
-    main()
+    return str(svg)
