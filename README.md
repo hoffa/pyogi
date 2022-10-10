@@ -32,3 +32,23 @@ The notation gets you started, you do the rest. Play what sounds good.
 ```bash
 ./render.sh score.mxl > score.svg
 ```
+
+## Development
+
+Set up dependencies:
+
+```bash
+make init
+```
+
+Run tests:
+
+```bash
+make test
+```
+
+If the rendering changes, tests can be quickly updated with:
+
+```bash
+UPDATE=1 make test
+```
