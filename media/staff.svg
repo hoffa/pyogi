@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 600 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1.02857,187.355,-21.75)">
+        <rect x="-0.5" y="35" width="1" height="70" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1.02857,436.855,-21.75)">
+        <rect x="-0.5" y="35" width="1" height="70" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,245L250,245" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="244" width="250" height="2" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,235L250,235" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="234.5" width="250" height="1" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,220L250,220" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="219.5" width="250" height="1" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,210L250,210" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="209" width="250" height="2" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,280L250,280" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="279" width="250" height="2" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,270L250,270" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="269.5" width="250" height="1" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="269.5" width="250" height="1" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,255L250,255" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="254.5" width="250" height="1" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,245L250,245" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <rect x="0" y="244" width="250" height="2" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,187.355,-194.75)">
+        <path d="M0,210L0,280" style="fill-rule:nonzero;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,141.175,-152.686)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">C</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-157.791)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">D</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-166.928)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">F</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-173.443)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">G</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-182.613)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">B</text>
+    </g>
+    <g transform="matrix(1,0,0,1,141.35,-162.686)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">E</text>
+    </g>
+    <g transform="matrix(1,0,0,1,141.35,-177.686)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">A</text>
+    </g>
+    <g transform="matrix(1,0,0,1,141.35,-187.686)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">C</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-193.291)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">D</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-202.428)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">F</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-208.943)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">G</text>
+    </g>
+    <g transform="matrix(1,0,0,1,149.38,-218.113)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">B</text>
+    </g>
+    <g transform="matrix(1,0,0,1,141.35,-198.186)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">E</text>
+    </g>
+    <g transform="matrix(1,0,0,1,141.35,-213.186)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">A</text>
+    </g>
+    <g transform="matrix(1,0,0,1,141.35,-223.186)">
+        <text x="27.099px" y="240.896px" style="font-family:'IBMPlexMono-Bold', 'IBM Plex Mono', monospace;font-weight:700;font-size:8px;">C</text>
+    </g>
+</svg>
