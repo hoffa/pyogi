@@ -16,10 +16,10 @@ HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 
 
-def draw_note(note: Note, point: Point) -> None:
+def draw_note(note: Note, point: Point, color: str) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.circle(point, HALF_STAFF_SPACE)
+        svg.circle(point, HALF_STAFF_SPACE, color)
     elif accidental == "sharp":
         svg.polygon(
             [
@@ -27,6 +27,7 @@ def draw_note(note: Note, point: Point) -> None:
                 Point(point.x - HALF_STAFF_SPACE, point.y + HALF_STAFF_SPACE),
                 Point(point.x + HALF_STAFF_SPACE, point.y),
             ],
+            color,
         )
 
 
@@ -46,7 +47,12 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
-        draw_note(note, position)
+        color = {
+            0: "black",
+            1: "red",
+            2: "blue",
+        }.get(note.part, "black")
+        draw_note(note, position, color)
 
 
 def draw_staff(origin: Point, width: float) -> None:
