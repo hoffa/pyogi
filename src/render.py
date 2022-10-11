@@ -43,7 +43,6 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
     for note in notes:
         position = Point(
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
-            # TODO: Should normalize to lowest modulo 7 otherwise kind of arbitrary?
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
         color = {
@@ -85,5 +84,5 @@ def render(score: List[Note]) -> str:
     num_staves = (max_note // NUM_NOTES) + 1
     width = max(note.time for note in score) * WHOLE_NOTE_WIDTH
     draw_staves(Point(0, 0), num_staves, width + (2 * EDGE_NOTE_PADDING))
-    draw_notes(Point(EDGE_NOTE_PADDING, (num_staves + 0) * STAFF_HEIGHT), score)
+    draw_notes(Point(EDGE_NOTE_PADDING, num_staves * STAFF_HEIGHT), score)
     return str(svg)
