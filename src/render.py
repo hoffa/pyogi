@@ -1,4 +1,3 @@
-import math
 from typing import List
 
 from parse import Note
@@ -44,6 +43,7 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
     for note in notes:
         position = Point(
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
+            # TODO: Should normalize to lowest modulo 7 otherwise kind of arbitrary?
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
         color = {
@@ -71,12 +71,19 @@ def draw_staves(origin: Point, count: int, width: float) -> None:
         draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
 
 
+def normalize_notes(notes: List[Note]) -> None:
+    # Shift everything as much as possible
+    min_note = min(note.note for note in notes)
+    sub = (min_note // NUM_NOTES) * NUM_NOTES
+    for note in notes:
+        note.note -= sub
+
+
 def render(score: List[Note]) -> str:
-    min_note = min(note.note for note in score)
+    normalize_notes(score)
     max_note = max(note.note for note in score)
-    # TODO: More accurate so it knows e.g. if all notes are within same octave or not
-    num_staves = math.ceil((max_note - min_note) / NUM_NOTES) + 1
+    num_staves = (max_note // NUM_NOTES) + 1
     width = max(note.time for note in score) * WHOLE_NOTE_WIDTH
     draw_staves(Point(0, 0), num_staves, width + (2 * EDGE_NOTE_PADDING))
-    draw_notes(Point(EDGE_NOTE_PADDING, (num_staves + 1) * STAFF_HEIGHT), score)
+    draw_notes(Point(EDGE_NOTE_PADDING, (num_staves + 0) * STAFF_HEIGHT), score)
     return str(svg)
