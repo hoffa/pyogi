@@ -41,7 +41,6 @@ def line_width_at_index(index: int) -> int:
 
 
 def draw_notes(origin: Point, notes: List[Note]) -> None:
-    origin.y += 2 * STAFF_HEIGHT  # Start from the middle
     for note in notes:
         position = Point(
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
@@ -79,5 +78,5 @@ def render(score: List[Note]) -> str:
     num_staves = math.ceil((max_note - min_note) / NUM_NOTES) + 1
     width = max(note.time for note in score) * WHOLE_NOTE_WIDTH
     draw_staves(Point(0, 0), num_staves, width + (2 * EDGE_NOTE_PADDING))
-    draw_notes(Point(EDGE_NOTE_PADDING, (num_staves - 1) * STAFF_HEIGHT), score)
+    draw_notes(Point(EDGE_NOTE_PADDING, (num_staves + 1) * STAFF_HEIGHT), score)
     return str(svg)

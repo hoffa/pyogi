@@ -22,7 +22,7 @@ Accidental = Literal[
 @dataclass
 class Note:
     time: float
-    note: int
+    note: int  # note % 7 == 0 is C
     accidental: Accidental
     part: int
 
