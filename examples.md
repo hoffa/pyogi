@@ -3,6 +3,10 @@
 
 ![](testdata/output/chopin-trois-valses.svg)
 
+## [`testdata/output/debussy-deux-arabesques-short.svg`](testdata/output/debussy-deux-arabesques-short.svg)
+
+![](testdata/output/debussy-deux-arabesques-short.svg)
+
 ## [`testdata/output/debussy-deux-arabesques.svg`](testdata/output/debussy-deux-arabesques.svg)
 
 ![](testdata/output/debussy-deux-arabesques.svg)
