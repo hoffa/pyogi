@@ -9,7 +9,7 @@ Under development, so changes are expected.
 
 ## Comparison
 
-Here's the beginning of Beethoven's Für Elise in modern musical notation:
+Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.org/wiki/Two_Arabesques) in modern musical notation:
 
 ![](media/modern.png)
 
