@@ -13,7 +13,7 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 
 ![](media/modern.png)
 
-And here using the proposed notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/fur-elise.svg) for the full composition):
+And here using the proposed notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition):
 
 ![](testdata/output/debussy-deux-arabesques-short.svg)
 
