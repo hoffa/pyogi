@@ -15,19 +15,16 @@ Here's the beginning of Beethoven's Für Elise in modern musical notation:
 
 And here using the proposed notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/fur-elise.svg) for the full composition):
 
-![](media/example.svg)
+![](testdata/output/debussy-deux-arabesques-short.svg)
 
 ## The notation in 1 minute
 
-![](media/staff.svg)
-
-- Thick lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
+- Lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
+- Each note has a different color.
 - Circles are naturals (i.e. white keys).
 - Triangles are sharps (i.e. black keys).
 
-There are no explicit flats, rests, note values, time signatures, key signatures, etc.
-
-The notation gets you started, you do the rest. Play what sounds good.
+There are no explicit flats, rests, note values, time signatures, key signatures, etc. Play what sounds good.
 
 ## Usage
 
