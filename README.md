@@ -21,6 +21,7 @@ And here using the proposed notation (see [here](https://raw.githubusercontent.c
 
 - Lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
 - Each note has a different color.
+- The higher the note, the higher the pitch.
 - Circles are naturals (i.e. white keys).
 - Triangles are sharps (i.e. black keys).
 
