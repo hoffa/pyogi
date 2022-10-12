@@ -5,8 +5,6 @@
 
 A simpler music notation for piano learners.
 
-Under development, so changes are expected.
-
 ## Comparison
 
 Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.org/wiki/Two_Arabesques) in modern musical notation:
