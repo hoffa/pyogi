@@ -24,14 +24,11 @@ class Note:
     time: float
     note: int  # note % 7 == 0 is C
     accidental: Accidental
-    part: int
 
 
-# TODO: Sort deterministically so can test it
 def parse(filename: str) -> Iterator[Note]:
     score = music21.converter.parse(filename)
     if isinstance(score, Score):
-        part_num = 0
         for part in score.parts:
             for note in part.flat.notes:
                 time = float(note.offset)
@@ -52,6 +49,4 @@ def parse(filename: str) -> Iterator[Note]:
                         time=time,
                         note=note,
                         accidental=accidental,
-                        part=part_num,
                     )
-            part_num += 1
