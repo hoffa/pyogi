@@ -10,23 +10,27 @@ svg = SVG(margin=50)
 
 NUM_NOTES = 7
 
-WHOLE_NOTE_WIDTH = 50
-STAFF_SPACE_HEIGHT = 10
+WHOLE_NOTE_WIDTH = 100
+STAFF_SPACE_HEIGHT = 15
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
+NOTE_SIZE = 10
+
+THIN_LINE_WIDTH = 2
+THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 
 
 def draw_note(note: Note, point: Point, color: str) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.circle(point, HALF_STAFF_SPACE, color)
+        svg.circle(point, NOTE_SIZE, color)
     elif accidental == "sharp":
         svg.polygon(
             [
-                Point(point.x - HALF_STAFF_SPACE, point.y - HALF_STAFF_SPACE),
-                Point(point.x - HALF_STAFF_SPACE, point.y + HALF_STAFF_SPACE),
-                Point(point.x + HALF_STAFF_SPACE, point.y),
+                Point(point.x - NOTE_SIZE, point.y - NOTE_SIZE),
+                Point(point.x - NOTE_SIZE, point.y + NOTE_SIZE),
+                Point(point.x + NOTE_SIZE, point.y),
             ],
             color,
         )
@@ -35,9 +39,9 @@ def draw_note(note: Note, point: Point, color: str) -> None:
 def line_width_at_index(index: int) -> int:
     index %= NUM_NOTES
     if index == 0:
-        return 2
+        return THICK_LINE_WIDTH
     if index in [2, 5]:
-        return 1
+        return THIN_LINE_WIDTH
     return 0
 
 
