@@ -50,13 +50,13 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
         )
         # https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html
         color = {
-            1: svgwrite.utils.rgb(123, 3, 3),
-            2: svgwrite.utils.rgb(223, 70, 13),
-            3: svgwrite.utils.rgb(251, 186, 56),
-            4: svgwrite.utils.rgb(164, 253, 61),
-            5: svgwrite.utils.rgb(34, 227, 181),
-            6: svgwrite.utils.rgb(70, 134, 250),
-            0: svgwrite.utils.rgb(49, 18, 59),
+            0: svgwrite.utils.rgb(210, 49, 5),
+            1: svgwrite.utils.rgb(251, 127, 34),
+            2: svgwrite.utils.rgb(237, 208, 57),
+            3: svgwrite.utils.rgb(164, 253, 61),
+            4: svgwrite.utils.rgb(48, 241, 153),
+            5: svgwrite.utils.rgb(45, 187, 236),
+            6: svgwrite.utils.rgb(71, 107, 227),
         }.get(note.note % NUM_NOTES, "black")
         draw_note(note, position, color)
 
