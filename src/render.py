@@ -17,8 +17,7 @@ HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 NOTE_SIZE = 10
 
-THIN_LINE_WIDTH = 2
-THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
+THICK_LINE_WIDTH = 4
 
 
 def draw_note(note: Note, point: Point, color: str) -> None:
@@ -40,8 +39,6 @@ def line_width_at_index(index: int) -> int:
     index %= NUM_NOTES
     if index == 0:
         return THICK_LINE_WIDTH
-    if index in [2, 5]:
-        return THIN_LINE_WIDTH
     return 0
 
 
