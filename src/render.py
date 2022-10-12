@@ -1,5 +1,7 @@
 from typing import List
 
+import svgwrite  # type: ignore
+
 from parse import Note
 from svg import SVG, Point
 
@@ -45,11 +47,16 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
+        # https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html
         color = {
-            0: "black",
-            1: "red",
-            2: "blue",
-        }.get(note.part, "black")
+            1: svgwrite.utils.rgb(123, 3, 3),
+            2: svgwrite.utils.rgb(223, 70, 13),
+            3: svgwrite.utils.rgb(251, 186, 56),
+            4: svgwrite.utils.rgb(164, 253, 61),
+            5: svgwrite.utils.rgb(34, 227, 181),
+            6: svgwrite.utils.rgb(70, 134, 250),
+            0: svgwrite.utils.rgb(49, 18, 59),
+        }.get(note.note % NUM_NOTES, "black")
         draw_note(note, position, color)
 
 
