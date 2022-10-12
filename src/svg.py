@@ -25,7 +25,12 @@ class SVG:
         self.svg.add(element).translate(self.margin, self.margin)
 
     def line(
-        self, start: Point, end: Point, width: float, color: str = "black"
+        self,
+        start: Point,
+        end: Point,
+        width: float,
+        color: str = "black",
+        opacity: str = "1.0",
     ) -> None:
         self._update_size(start)
         self._update_size(end)
@@ -35,6 +40,7 @@ class SVG:
                 (end.x, end.y),
                 stroke_width=width,
                 stroke=color,
+                stroke_opacity=opacity,
             )
         )
 

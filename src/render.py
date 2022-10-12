@@ -61,8 +61,8 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
         draw_note(note, position, color)
 
 
-def draw_staff(origin: Point, width: float) -> None:
-    for i in range(8):
+def draw_staff(origin: Point, width: float, draw_top: bool) -> None:
+    for i in range(8 if draw_top else 7):
         line_width = line_width_at_index(i)
         if line_width > 0:
             line_y = origin.y + STAFF_HEIGHT - (i * HALF_STAFF_SPACE)
@@ -70,12 +70,15 @@ def draw_staff(origin: Point, width: float) -> None:
                 Point(origin.x, line_y),
                 Point(origin.x + width, line_y),
                 line_width,
+                color="black",
+                opacity="0.25",
             )
 
 
 def draw_staves(origin: Point, count: int, width: float) -> None:
     for i in range(count):
-        draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
+        draw_top = i == 0
+        draw_staff(Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, draw_top)
 
 
 def normalize_notes(notes: List[Note]) -> None:
