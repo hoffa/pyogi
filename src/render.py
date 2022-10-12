@@ -70,8 +70,8 @@ def draw_staff(origin: Point, width: float, draw_top: bool) -> None:
                 Point(origin.x, line_y),
                 Point(origin.x + width, line_y),
                 line_width,
-                color="black",
-                opacity="0.25",
+                color=svgwrite.utils.rgb(127, 127, 127),
+                opacity="0.5",
             )
 
 
