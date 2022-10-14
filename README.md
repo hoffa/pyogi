@@ -13,11 +13,11 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 
 And here using the proposed notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition) in a few different themes:
 
+![](testdata/output/debussy-deux-arabesques-short-mono.svg)
+
 ![](testdata/output/debussy-deux-arabesques-short.svg)
 
 ![](testdata/output/debussy-deux-arabesques-short-turbo.svg)
-
-![](testdata/output/debussy-deux-arabesques-short-mono.svg)
 
 ## The notation in 1 minute
 
