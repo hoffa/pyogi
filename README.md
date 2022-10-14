@@ -11,7 +11,7 @@ I'm bad at piano but I'm trying to learn by myself, and I find modern music nota
 
 For example:
 
-1. Why does the note corresponding to a line on the staff depend on (1) the [clef](https://en.wikipedia.org/wiki/Clef), (2) the [key signature](https://en.wikipedia.org/wiki/Key_signature), and (3) the [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) next to a note? Why do I need to read 3 places just to know which key to press?
+1. Why does the note corresponding to a line on the [staff](https://en.wikipedia.org/wiki/Staff_(music)) depend on (1) the [clef](https://en.wikipedia.org/wiki/Clef), (2) the [key signature](https://en.wikipedia.org/wiki/Key_signature), and (3) the [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) next to a note? Why do I need to read 3 places just to know which key to press?
 1. Why have both C♯ and D♭ when they correspond to the same key?
 
 ## Comparison
