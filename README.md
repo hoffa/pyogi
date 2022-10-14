@@ -15,6 +15,10 @@ And here using the proposed notation (see [here](https://raw.githubusercontent.c
 
 ![](testdata/output/debussy-deux-arabesques-short.svg)
 
+Or with a dark theme:
+
+![](testdata/output/debussy-deux-arabesques-short-turbo.svg)
+
 ## The notation in 1 minute
 
 - Lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
