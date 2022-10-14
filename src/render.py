@@ -3,9 +3,6 @@ from typing import List
 from parse import Note
 from svg import SVG, Point
 
-svg = SVG(margin=50)
-
-
 NUM_NOTES = 7
 
 WHOLE_NOTE_WIDTH = 100
@@ -17,6 +14,8 @@ NOTE_SIZE = 10
 
 THIN_LINE_WIDTH = 1
 THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
+
+svg = SVG(margin_w=STAFF_HEIGHT, margin_h=2 * STAFF_HEIGHT)
 
 # https://personal.sron.nl/~pault/
 COLOR_VIBRANT = {
