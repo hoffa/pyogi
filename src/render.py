@@ -18,6 +18,7 @@ THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 
 class Theme(TypedDict):
     bg_color: str
+    staff_color: str
     colors: List[str]
 
 
@@ -53,7 +54,9 @@ def draw_notes(svg: SVG, origin: Point, notes: List[Note], theme: Theme) -> None
         draw_note(svg, note, position, color)
 
 
-def draw_staff(svg: SVG, origin: Point, width: float, draw_top: bool) -> None:
+def draw_staff(
+    svg: SVG, origin: Point, width: float, draw_top: bool, color: str
+) -> None:
     for i in range(8 if draw_top else 7):
         line_width = line_width_at_index(i)
         if line_width > 0:
@@ -62,13 +65,16 @@ def draw_staff(svg: SVG, origin: Point, width: float, draw_top: bool) -> None:
                 Point(origin.x, line_y),
                 Point(origin.x + width, line_y),
                 line_width,
+                color,
             )
 
 
-def draw_staves(svg: SVG, origin: Point, count: int, width: float) -> None:
+def draw_staves(svg: SVG, origin: Point, count: int, width: float, color: str) -> None:
     for i in range(count):
         draw_top = i == 0
-        draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, draw_top)
+        draw_staff(
+            svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, draw_top, color
+        )
 
 
 def normalize_notes(notes: List[Note]) -> None:
@@ -89,7 +95,9 @@ def draw_notes_with_staves(
     max_note = max(note.note for note in notes)
     num_staves = (max_note // NUM_NOTES) + 1
     height = num_staves * STAFF_HEIGHT
-    draw_staves(svg, origin, num_staves, width + (2 * EDGE_NOTE_PADDING))
+    draw_staves(
+        svg, origin, num_staves, width + (2 * EDGE_NOTE_PADDING), theme["staff_color"]
+    )
     draw_notes(
         svg, Point(origin.x + EDGE_NOTE_PADDING, origin.y + height), notes, theme
     )
