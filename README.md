@@ -31,6 +31,13 @@ See [`examples.md`](examples.md) for more examples.
 
 There are no explicit flats, rests, note values, time signatures, key signatures, etc. Play what sounds good.
 
+## But why?
+
+I'm bad at piano but I'm trying to learn by myself, and I find modern music notation overwhelming. For example:
+
+1. Why does the note corresponding to a line on the staff depend on (1) the clef, (2) the key signature, and (3) the accidental next to a note? I need to read 3 places just to know which key to press. 
+1. Why have both C♯ and D♭ when they correspond to the same key?
+
 ## Usage
 
 ```bash
