@@ -15,7 +15,7 @@ HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 NOTE_SIZE = 10
 
-THICK_LINE_WIDTH = 4
+THICK_LINE_WIDTH = 2
 
 
 def draw_note(note: Note, point: Point, color: str) -> None:
