@@ -48,13 +48,13 @@ def draw_notes(origin: Point, notes: List[Note]) -> None:
         )
         # https://personal.sron.nl/~pault/
         color = {
-            0: "#BBBBBB",
-            1: "#33BBEE",
-            2: "#009988",
-            3: "#0077BB",
-            4: "#EE7733",
-            5: "#EE3377",
-            6: "#CC3311",
+            0: "#000000",
+            6: "#33BBEE",
+            5: "#009988",
+            4: "#0077BB",
+            3: "#EE7733",
+            2: "#EE3377",
+            1: "#CC3311",
         }.get(note.note % NUM_NOTES, "black")
         draw_note(note, position, color)
 
@@ -68,7 +68,6 @@ def draw_staff(origin: Point, width: float, draw_top: bool) -> None:
                 Point(origin.x, line_y),
                 Point(origin.x + width, line_y),
                 line_width,
-                color="#BBBBBB",
             )
 
 
