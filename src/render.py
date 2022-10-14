@@ -105,9 +105,7 @@ def draw_notes_with_staves(
 
 
 def render(score: List[List[Note]], theme: Theme) -> str:
-    svg = SVG(
-        margin_w=STAFF_HEIGHT, margin_h=2 * STAFF_HEIGHT, bg_color=theme["bg_color"]
-    )
+    svg = SVG(margin_w=STAFF_HEIGHT, margin_h=STAFF_HEIGHT, bg_color=theme["bg_color"])
     width = max(get_width(notes) for notes in score)
     y: float = 0
     for notes in score:
