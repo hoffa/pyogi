@@ -15,7 +15,19 @@ HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 NOTE_SIZE = 10
 
-THICK_LINE_WIDTH = 2
+THIN_LINE_WIDTH = 1
+THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
+
+# https://personal.sron.nl/~pault/
+COLOR_VIBRANT = {
+    0: "#000000",
+    6: "#33BBEE",
+    5: "#009988",
+    4: "#0077BB",
+    3: "#EE7733",
+    2: "#EE3377",
+    1: "#CC3311",
+}
 
 
 def draw_note(note: Note, point: Point, color: str) -> None:
@@ -40,22 +52,15 @@ def line_width_at_index(index: int) -> int:
     return 0
 
 
-def draw_notes(origin: Point, notes: List[Note]) -> None:
+def draw_notes(origin: Point, notes: List[Note], with_color: bool = True) -> None:
     for note in notes:
         position = Point(
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
         # https://personal.sron.nl/~pault/
-        color = {
-            0: "#000000",
-            6: "#33BBEE",
-            5: "#009988",
-            4: "#0077BB",
-            3: "#EE7733",
-            2: "#EE3377",
-            1: "#CC3311",
-        }.get(note.note % NUM_NOTES, "black")
+        colors = COLOR_VIBRANT if with_color else {}
+        color = colors.get(note.note % NUM_NOTES, "black")
         draw_note(note, position, color)
 
 
