@@ -24,7 +24,7 @@ THEMES: Dict[str, Theme] = {
     # https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html
     "turbo": {
         "bg_color": "black",
-        "staff_color": "white",
+        "staff_color": "#666666",
         "colors": [
             svgwrite.utils.rgb(210, 49, 5),
             svgwrite.utils.rgb(251, 127, 34),
