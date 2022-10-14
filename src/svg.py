@@ -11,8 +11,8 @@ class Point:
 
 
 class SVG:
-    def __init__(self, margin: int) -> None:
-        self.svg = svgwrite.Drawing()
+    def __init__(self, margin: int, bg_color: str = "white") -> None:
+        self.svg = svgwrite.Drawing(style=f"background-color: {bg_color};")
         self.width: float = 0
         self.height: float = 0
         self.margin = margin
