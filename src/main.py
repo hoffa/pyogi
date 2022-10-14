@@ -8,7 +8,7 @@ from render import Theme, render
 
 THEMES: Dict[str, Theme] = {
     # https://personal.sron.nl/~pault/
-    "default": {
+    "light": {
         "bg_color": "white",
         "staff_color": "black",
         "colors": [
@@ -22,7 +22,7 @@ THEMES: Dict[str, Theme] = {
         ],
     },
     # https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html
-    "turbo": {
+    "dark": {
         "bg_color": "black",
         "staff_color": "#666666",
         "colors": [
@@ -35,7 +35,7 @@ THEMES: Dict[str, Theme] = {
             svgwrite.utils.rgb(71, 107, 227),
         ],
     },
-    "monochrome": {
+    "mono": {
         "bg_color": "white",
         "staff_color": "black",
         "colors": [
@@ -54,7 +54,7 @@ THEMES: Dict[str, Theme] = {
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file")
-    parser.add_argument("--theme", choices=THEMES.keys(), default="default")
+    parser.add_argument("--theme", choices=THEMES.keys(), default="light")
     args = parser.parse_args()
 
     print(render(list(parse(args.file)), THEMES[args.theme]))
