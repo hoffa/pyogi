@@ -37,6 +37,8 @@ There are no explicit flats, rests, note values, time signatures, key signatures
 ./render.sh score.mxl > score.svg
 ```
 
+Where `score.mxl` is a compressed [MusicXML](https://en.wikipedia.org/wiki/MusicXML) file.
+
 ## Development
 
 Set up dependencies:
