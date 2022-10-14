@@ -89,15 +89,20 @@ def normalize_notes(notes: List[Note]) -> None:
         note.note -= sub
 
 
+def draw_notes_with_staves(origin: Point, notes: List[Note]) -> float:
+    max_note = max(note.note for note in notes)
+    num_staves = (max_note // NUM_NOTES) + 1
+    width = max(note.time for note in notes) * WHOLE_NOTE_WIDTH
+    height = num_staves * STAFF_HEIGHT
+    draw_staves(origin, num_staves, width + (2 * EDGE_NOTE_PADDING))
+    draw_notes(Point(origin.x + EDGE_NOTE_PADDING, origin.y + height), notes)
+    return height
+
+
 def render(score: List[List[Note]]) -> str:
     y: float = 0
     for notes in score:
         normalize_notes(notes)
-        max_note = max(note.note for note in notes)
-        num_staves = (max_note // NUM_NOTES) + 1
-        width = max(note.time for note in notes) * WHOLE_NOTE_WIDTH
-        height = num_staves * STAFF_HEIGHT
-        draw_staves(Point(0, y), num_staves, width + (2 * EDGE_NOTE_PADDING))
-        draw_notes(Point(EDGE_NOTE_PADDING, y + height), notes)
+        height = draw_notes_with_staves(Point(0, y), notes)
         y += height + (2 * STAFF_HEIGHT)
     return str(svg)
