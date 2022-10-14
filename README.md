@@ -19,6 +19,8 @@ And here using the proposed notation (see [here](https://raw.githubusercontent.c
 
 ![](testdata/output/debussy-deux-arabesques-short-turbo.svg)
 
+See [`examples.md`](examples.md) for more examples.
+
 ## The notation in 1 minute
 
 - Lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
