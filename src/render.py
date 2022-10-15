@@ -25,7 +25,7 @@ class Theme(TypedDict):
 def draw_note(svg: SVG, note: Note, point: Point, color: str) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, NOTE_SIZE, 0.75 * NOTE_SIZE, 0, color)
+        svg.ellipse(point, 1.1 * NOTE_SIZE, 0.8 * NOTE_SIZE, 0, color)
     elif accidental == "sharp":
         svg.polygon(
             [
