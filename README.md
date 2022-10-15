@@ -33,7 +33,7 @@ See [`examples.md`](examples.md) for more examples.
 
 ## The notation in 1 minute
 
-- Lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
+- Thick lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
 - Each note has a different color.
 - The higher the note, the higher the pitch.
 - Ovals are naturals (i.e. white keys).
