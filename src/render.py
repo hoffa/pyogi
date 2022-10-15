@@ -29,9 +29,9 @@ def draw_note(svg: SVG, note: Note, point: Point, color: str) -> None:
     elif accidental == "sharp":
         svg.polygon(
             [
-                Point(point.x - NOTE_SIZE, point.y - (0.9 * NOTE_SIZE)),
-                Point(point.x - NOTE_SIZE, point.y + (0.9 * NOTE_SIZE)),
-                Point(point.x + NOTE_SIZE, point.y),
+                Point(point.x - (1.1 * NOTE_SIZE), point.y - (0.9 * NOTE_SIZE)),
+                Point(point.x - (1.1 * NOTE_SIZE), point.y + (0.9 * NOTE_SIZE)),
+                Point(point.x + (1.1 * NOTE_SIZE), point.y),
             ],
             color,
         )
