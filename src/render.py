@@ -41,6 +41,8 @@ def line_width_at_index(index: int) -> int:
     index %= NUM_NOTES
     if index == 0:
         return THICK_LINE_WIDTH
+    if index in [2, 5]:
+        return THIN_LINE_WIDTH
     return 0
 
 
