@@ -6,8 +6,6 @@
 
 A simpler music notation for piano learners.
 
-🚧 Still a work in progress, so expect changes.
-
 ## Why?
 
 I'm bad at piano but I'm trying to learn by myself, and I find modern music notation overwhelming.
