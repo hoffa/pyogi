@@ -15,10 +15,10 @@ for f in testdata/input/*.mxl; do
 	diff -u "${expected}" <(./render.sh "$f") >/dev/null
 	diff -u "${expected_turbo}" <(./render.sh --theme dark "$f") >/dev/null
 	diff -u "${expected_mono}" <(./render.sh --theme mono "$f") >/dev/null
-	printf "## [\`${expected}\`](${expected})\n\n" >>examples.md
+	printf "## [\`${expected}\`](https://raw.githubusercontent.com/hoffa/notation/main/${expected})\n\n" >>examples.md
 	printf "![](${expected})\n\n" >>examples.md
-	printf "## [\`${expected_turbo}\`](${expected_turbo})\n\n" >>examples.md
+	printf "## [\`${expected_turbo}\`](https://raw.githubusercontent.com/hoffa/notation/main/${expected_turbo})\n\n" >>examples.md
 	printf "![](${expected_turbo})\n\n" >>examples.md
-	printf "## [\`${expected_mono}\`](${expected_mono})\n\n" >>examples.md
+	printf "## [\`${expected_mono}\`](https://raw.githubusercontent.com/hoffa/notation/main/${expected_mono})\n\n" >>examples.md
 	printf "![](${expected_mono})\n\n" >>examples.md
 done
