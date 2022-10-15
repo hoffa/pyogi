@@ -36,7 +36,7 @@ See [`examples.md`](examples.md) for more examples.
 - Lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
 - Each note has a different color.
 - The higher the note, the higher the pitch.
-- Circles are naturals (i.e. white keys).
+- Ovals are naturals (i.e. white keys).
 - Triangles are sharps (i.e. black keys).
 
 There are no explicit flats, rests, note values, time signatures, key signatures, etc. Play what sounds good.
