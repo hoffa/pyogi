@@ -24,7 +24,7 @@ class SVG:
         self.width = max(self.width, point.x)
         self.height = max(self.height, point.y)
 
-    def _add(self, element: Any) -> None:
+    def _add(self, element: Any) -> Any:
         self.svg.add(element).translate(self.margin_w, self.margin_h)
 
     def line(
@@ -54,6 +54,7 @@ class SVG:
                 (center.x, center.y),
                 radius,
                 fill=color,
+                stroke=color,
             )
         )
 
@@ -67,6 +68,18 @@ class SVG:
                 stroke=color,
             )
         )
+
+    def ellipse(
+        self, center: Point, rx: float, ry: float, angle: float, color: str = "black"
+    ) -> None:
+        shape = self.svg.ellipse(
+            (center.x, center.y),
+            (rx, ry),
+            fill=color,
+            stroke=color,
+        )
+        shape.rotate(angle, (center.x, center.y))
+        self._add(shape)
 
     def __str__(self) -> str:
         # It's ugly but works
