@@ -114,5 +114,5 @@ def render(score: List[List[Note]], theme: Theme) -> str:
     for notes in score:
         normalize_notes(notes)
         height = draw_notes_with_staves(svg, theme, Point(0, y), notes, width)
-        y += height + (2 * STAFF_HEIGHT)
+        y += height + STAFF_HEIGHT
     return str(svg)
