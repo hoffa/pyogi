@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Iterator, List, Literal
+from typing import Any, Iterator, List, Literal
 
 import music21
 from music21.stream import Part, Score
@@ -47,8 +47,8 @@ def get_notes(part: Part) -> Iterator[Note]:
             )
 
 
-def parse(filename: str) -> Iterator[List[Note]]:
-    score = music21.converter.parse(filename)
+def parse(file: Any) -> Iterator[List[Note]]:
+    score = music21.converter.parse(file)
     if isinstance(score, Score):
         for part in score.parts:
             yield list(get_notes(part))

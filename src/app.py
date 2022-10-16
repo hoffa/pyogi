@@ -1,19 +1,17 @@
 import tempfile
-from typing import Any, Optional
-from pathlib import Path
 import zipfile
+from pathlib import Path
 
 import streamlit as st
-import svgwrite
-from parse import parse
 
-from render import render  # type: ignore
+from parse import parse
+from render import Theme, render
 
 st.set_page_config(page_title="Pyogi Converter", page_icon=":notes:")
 st.title("Pyogi Converter")
 
 
-A = {
+A: Theme = {
     "bg_color": "white",
     "staff_color": "black",
     "colors": [
