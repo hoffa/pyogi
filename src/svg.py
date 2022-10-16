@@ -17,6 +17,8 @@ class SVG:
         )
         self.width: float = 0
         self.height: float = 0
+        self.margin_w = margin_w
+        self.margin_h = margin_h
 
     def _update_size(self, point: Point) -> None:
         self.width = max(self.width, point.x)
@@ -70,8 +72,10 @@ class SVG:
 
     def __str__(self) -> str:
         # It's ugly but works
+        width = self.width + (2 * self.margin_w)
+        height = self.height + (2 * self.margin_h)
         return (
             str(self.svg.tostring())
-            .replace('width="100%"', f'width="{self.width}"')
-            .replace('height="100%"', f'height="{self.height}"')
+            .replace('width="100%"', f'width="{width}"')
+            .replace('height="100%"', f'height="{height}"')
         )
