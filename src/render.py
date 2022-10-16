@@ -25,19 +25,12 @@ class Theme(TypedDict):
     colors: List[str]
 
 
-def draw_note(svg: SVG, note: Note, point: Point, color: str) -> None:
+def draw_note(svg: SVG, note: Note, point: Point) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, NOTE_RX, NOTE_RY, 0, color)
+        svg.ellipse(point, NOTE_RX, NOTE_RY, 0, "black")
     elif accidental == "sharp":
-        svg.polygon(
-            [
-                Point(point.x - NOTE_RX, point.y - NOTE_RY),
-                Point(point.x - NOTE_RX, point.y + NOTE_RY),
-                Point(point.x + NOTE_RX, point.y),
-            ],
-            color,
-        )
+        svg.ellipse(point, NOTE_RX, NOTE_RY, 0, "white", "black", THICK_LINE_WIDTH)
 
 
 def line_width_at_index(index: int) -> int:
@@ -49,17 +42,16 @@ def line_width_at_index(index: int) -> int:
     return 0
 
 
-def draw_notes(svg: SVG, origin: Point, notes: List[Note], theme: Theme) -> None:
+def draw_notes(svg: SVG, origin: Point, notes: List[Note]) -> None:
     for note in notes:
         position = Point(
             origin.x + (note.time * WHOLE_NOTE_WIDTH),
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
-        color = theme["colors"][note.note % NUM_NOTES]
-        draw_note(svg, note, position, color)
+        draw_note(svg, note, position)
 
 
-def draw_staff(svg: SVG, origin: Point, width: float, color: str) -> None:
+def draw_staff(svg: SVG, origin: Point, width: float) -> None:
     for i in range(8):
         line_width = line_width_at_index(i)
         if line_width > 0:
@@ -68,7 +60,6 @@ def draw_staff(svg: SVG, origin: Point, width: float, color: str) -> None:
                 Point(origin.x, line_y),
                 Point(origin.x + width, line_y),
                 line_width,
-                color,
             )
     svg.line(origin, Point(origin.x, origin.y + STAFF_HEIGHT), THICK_LINE_WIDTH)
     svg.line(
@@ -78,9 +69,9 @@ def draw_staff(svg: SVG, origin: Point, width: float, color: str) -> None:
     )
 
 
-def draw_staves(svg: SVG, origin: Point, count: int, width: float, color: str) -> None:
+def draw_staves(svg: SVG, origin: Point, count: int, width: float) -> None:
     for i in range(count):
-        draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, color)
+        draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
 
 
 def normalize_notes(notes: List[Note]) -> Iterator[Note]:
@@ -100,26 +91,31 @@ def get_width(notes: List[Note]) -> float:
 
 
 def draw_notes_with_staves(
-    svg: SVG, theme: Theme, origin: Point, notes: List[Note], width: float
+    svg: SVG, origin: Point, notes: List[Note], width: float
 ) -> float:
     max_note = max(note.note for note in notes)
     num_staves = (max_note // NUM_NOTES) + 1
     height = num_staves * STAFF_HEIGHT
     draw_staves(
-        svg, origin, num_staves, width + (2 * EDGE_NOTE_PADDING), theme["staff_color"]
+        svg,
+        origin,
+        num_staves,
+        width + (2 * EDGE_NOTE_PADDING),
     )
     draw_notes(
-        svg, Point(origin.x + EDGE_NOTE_PADDING, origin.y + height), notes, theme
+        svg,
+        Point(origin.x + EDGE_NOTE_PADDING, origin.y + height),
+        notes,
     )
     return height
 
 
-def render(score: List[List[Note]], theme: Theme) -> str:
-    svg = SVG(margin_w=STAFF_HEIGHT, margin_h=STAFF_HEIGHT, bg_color=theme["bg_color"])
+def render(score: List[List[Note]]) -> str:
+    svg = SVG(margin_w=STAFF_HEIGHT, margin_h=STAFF_HEIGHT, bg_color="white")
     width = max(get_width(notes) for notes in score)
     y: float = 0
     for notes in score:
         notes = list(normalize_notes(notes))
-        height = draw_notes_with_staves(svg, theme, Point(0, y), notes, width)
+        height = draw_notes_with_staves(svg, Point(0, y), notes, width)
         y += height + STAFF_HEIGHT
     return str(svg)

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, List
+from typing import Any
 
 import svgwrite  # type: ignore
 
@@ -46,36 +46,22 @@ class SVG:
             )
         )
 
-    def circle(self, center: Point, radius: float, color: str = "black") -> None:
-        self._update_size(center)
-        self._add(
-            self.svg.circle(
-                (center.x, center.y),
-                radius,
-                fill=color,
-                stroke=color,
-            )
-        )
-
-    def polygon(self, points: List[Point], color: str = "black") -> None:
-        for point in points:
-            self._update_size(point)
-        self._add(
-            self.svg.polygon(
-                [(point.x, point.y) for point in points],
-                fill=color,
-                stroke=color,
-            )
-        )
-
     def ellipse(
-        self, center: Point, rx: float, ry: float, angle: float, color: str = "black"
+        self,
+        center: Point,
+        rx: float,
+        ry: float,
+        angle: float,
+        color: str = "black",
+        stroke: str = "black",
+        stroke_width: float = 1.0,
     ) -> None:
         shape = self.svg.ellipse(
             (center.x, center.y),
             (rx, ry),
             fill=color,
-            stroke=color,
+            stroke=stroke,
+            stroke_width=str(stroke_width),
         )
         shape.rotate(angle, (center.x, center.y))
         self._add(shape)
