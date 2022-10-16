@@ -1,7 +1,21 @@
 import argparse
 
 from parse import parse
-from render import render
+from render import Theme, render
+
+THEME: Theme = {
+    "bg_color": "white",
+    "staff_color": "black",
+    "colors": [
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+    ],
+}
 
 
 def main() -> None:
@@ -9,7 +23,7 @@ def main() -> None:
     parser.add_argument("file")
     args = parser.parse_args()
 
-    print(render(list(parse(args.file))))
+    print(render(list(parse(args.file)), THEME))
 
 
 if __name__ == "__main__":

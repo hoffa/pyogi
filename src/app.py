@@ -5,11 +5,25 @@ from pathlib import Path
 import streamlit as st
 
 from parse import parse
-from render import render
+from render import Theme, render
 
 st.set_page_config(page_title="Pyogi Converter", page_icon=":notes:")
 st.title("Pyogi Converter")
 
+
+A: Theme = {
+    "bg_color": "white",
+    "staff_color": "black",
+    "colors": [
+        "#000000",
+        "#CC3311",
+        "#EE3377",
+        "#EE7733",
+        "#0077BB",
+        "#009988",
+        "#33BBEE",
+    ],
+}
 
 f = st.file_uploader(
     "File", help="File must be in MusicXML format.", type=["mxl", "musicxml"]
@@ -23,5 +37,5 @@ if f:
             paths = list(Path(dir).glob("*.xml"))
             if len(paths) == 1:
                 filename = paths[0]
-                b = render(list(parse(filename)))
+                b = render(list(parse(filename)), A)
                 st.image(b)
