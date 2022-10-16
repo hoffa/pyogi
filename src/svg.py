@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Any, List
 
 import svgwrite  # type: ignore
+from svgwrite.container import Group  # type: ignore
 
 
 @dataclass
@@ -14,6 +15,9 @@ class SVG:
     # TODO: Add margin, either by translating each or translating a container <g>
     def __init__(self, margin_w: int, margin_h: int, bg_color: str = "white") -> None:
         self.svg = svgwrite.Drawing(style=f"background-color: {bg_color};")
+        self.g = Group()
+        self.g.translate(margin_w, margin_h)
+        self.svg.add(self.g)
         self.width: float = 0
         self.height: float = 0
         self.margin_w = margin_w
@@ -24,7 +28,7 @@ class SVG:
         self.height = max(self.height, point.y)
 
     def _add(self, element: Any) -> Any:
-        self.svg.add(element)
+        self.g.add(element)
 
     def line(
         self,
@@ -71,8 +75,8 @@ class SVG:
 
     def __str__(self) -> str:
         # It's ugly but works
-        width = self.width
-        height = self.height
+        width = self.width + (2 * self.margin_w)
+        height = self.height + (2 * self.margin_h)
         return (
             str(self.svg.tostring())
             .replace('width="100%"', f'width="{int(width)}"')
