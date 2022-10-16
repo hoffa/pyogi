@@ -1,4 +1,4 @@
-# notation
+# pyogi-notation
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hoffa-pyogi-notation-srcapp-mv3c4s.streamlitapp.com)
 [![Tests](https://github.com/hoffa/notation/actions/workflows/build.yml/badge.svg)](https://github.com/hoffa/notation/actions/workflows/build.yml)
