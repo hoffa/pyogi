@@ -48,8 +48,12 @@ def get_notes(part: Part) -> Iterator[Note]:
             )
 
 
-def parse(filename: Path) -> Iterator[List[Note]]:
+def _parse(filename: Path) -> Iterator[List[Note]]:
     score = music21.converter.parse(filename)
     if isinstance(score, Score):
         for part in score.parts:
             yield list(get_notes(part))
+
+
+def parse(filename: Path) -> List[List[Note]]:
+    return list(_parse(filename))

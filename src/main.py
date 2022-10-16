@@ -1,7 +1,8 @@
 import argparse
 from pathlib import Path
 
-from common import parse_and_render
+from parse import parse
+from render import render
 
 
 def main() -> None:
@@ -9,7 +10,7 @@ def main() -> None:
     parser.add_argument("file", type=Path)
     args = parser.parse_args()
 
-    print(parse_and_render(args.file))
+    print(render(parse(args.file)))
 
 
 if __name__ == "__main__":
