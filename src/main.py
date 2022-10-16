@@ -1,63 +1,29 @@
 import argparse
-from typing import Dict
-
-import svgwrite  # type: ignore
 
 from parse import parse
 from render import Theme, render
 
-THEMES: Dict[str, Theme] = {
-    # https://personal.sron.nl/~pault/
-    "light": {
-        "bg_color": "white",
-        "staff_color": "black",
-        "colors": [
-            "#000000",
-            "#CC3311",
-            "#EE3377",
-            "#EE7733",
-            "#0077BB",
-            "#009988",
-            "#33BBEE",
-        ],
-    },
-    # https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html
-    "dark": {
-        "bg_color": "black",
-        "staff_color": "#444444",
-        "colors": [
-            svgwrite.utils.rgb(210, 49, 5),
-            svgwrite.utils.rgb(251, 127, 34),
-            svgwrite.utils.rgb(237, 208, 57),
-            svgwrite.utils.rgb(164, 253, 61),
-            svgwrite.utils.rgb(48, 241, 153),
-            svgwrite.utils.rgb(45, 187, 236),
-            svgwrite.utils.rgb(71, 107, 227),
-        ],
-    },
-    "mono": {
-        "bg_color": "white",
-        "staff_color": "black",
-        "colors": [
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-        ],
-    },
+THEME: Theme = {
+    "bg_color": "white",
+    "staff_color": "black",
+    "colors": [
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+        "black",
+    ],
 }
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file")
-    parser.add_argument("--theme", choices=THEMES.keys(), default="light")
     args = parser.parse_args()
 
-    print(render(list(parse(args.file)), THEMES[args.theme]))
+    print(render(list(parse(args.file)), THEME))
 
 
 if __name__ == "__main__":

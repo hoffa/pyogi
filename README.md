@@ -1,4 +1,3 @@
-
 # notation
 
 [![Tests](https://github.com/hoffa/notation/actions/workflows/build.yml/badge.svg)](https://github.com/hoffa/notation/actions/workflows/build.yml)
@@ -12,7 +11,7 @@ I'm bad at piano but I'm trying to learn by myself, and I find modern music nota
 
 For example:
 
-1. Why does the note corresponding to a line on the [staff](https://en.wikipedia.org/wiki/Staff_(music)) depend on (1) the [clef](https://en.wikipedia.org/wiki/Clef), (2) the [key signature](https://en.wikipedia.org/wiki/Key_signature), and (3) the [accidental](https://en.wikipedia.org/wiki/Accidental_(music)) next to a note? Why do I need to read 3 places just to know which key to press?
+1. Why does the note corresponding to a line on the [staff](<https://en.wikipedia.org/wiki/Staff_(music)>) depend on (1) the [clef](https://en.wikipedia.org/wiki/Clef), (2) the [key signature](https://en.wikipedia.org/wiki/Key_signature), and (3) the [accidental](<https://en.wikipedia.org/wiki/Accidental_(music)>) next to a note? Why do I need to read 3 places just to know which key to press?
 1. Why have both C♯ and D♭ when they correspond to the same key?
 
 ## Comparison
@@ -23,17 +22,13 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 
 And here using the Pyogi notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition) in a few different themes:
 
-![](testdata/output/debussy-deux-arabesques-short-mono.svg)
-
 ![](testdata/output/debussy-deux-arabesques-short.svg)
-
-![](testdata/output/debussy-deux-arabesques-short-turbo.svg)
 
 See [`examples.md`](examples.md) for more examples.
 
 ## The notation in 1 minute
 
-- Thick lines are [C notes](https://en.wikipedia.org/wiki/C_(musical_note)).
+- Thick lines are [C notes](<https://en.wikipedia.org/wiki/C_(musical_note)>).
 - Each note has a different color.
 - The higher the note, the higher the pitch.
 - Ovals are naturals (i.e. white keys).
