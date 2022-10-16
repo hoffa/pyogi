@@ -1,5 +1,5 @@
 
-# pyogi
+# pyogi-notation
 
 [![Tests](https://github.com/hoffa/notation/actions/workflows/build.yml/badge.svg)](https://github.com/hoffa/notation/actions/workflows/build.yml)
 [![CC BY-NC-ND 4.0](https://img.shields.io/badge/license-CC%20BY--NC--ND%204.0-blue)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
@@ -21,7 +21,7 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 
 ![](media/modern.png)
 
-And here using the proposed notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition) in a few different themes:
+And here using the Pyogi notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition) in a few different themes:
 
 ![](testdata/output/debussy-deux-arabesques-short-mono.svg)
 
