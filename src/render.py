@@ -24,10 +24,11 @@ def draw_note(svg: SVG, note: Note, point: Point) -> None:
     if accidental == "natural":
         svg.ellipse(point, 0.9 * NOTE_RX, NOTE_RY, -25)
     elif accidental == "sharp":
+        x_left = point.x - (0.875 * NOTE_RX)
         svg.polygon(
             [
-                Point(point.x - NOTE_RX, point.y - NOTE_RY),
-                Point(point.x - NOTE_RX, point.y + NOTE_RY),
+                Point(x_left, point.y - 1.1 * NOTE_RY),
+                Point(x_left, point.y + 1.1 * NOTE_RY),
                 Point(point.x + (1.2 * NOTE_RX), point.y),
             ],
         )
