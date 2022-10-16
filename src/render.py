@@ -12,6 +12,9 @@ HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 NOTE_SIZE = 10
 
+NOTE_RX = 1.1 * NOTE_SIZE
+NOTE_RY = 0.7 * NOTE_SIZE
+
 THIN_LINE_WIDTH = 1
 THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 
@@ -25,13 +28,13 @@ class Theme(TypedDict):
 def draw_note(svg: SVG, note: Note, point: Point, color: str) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, 1.1 * NOTE_SIZE, 0.7 * NOTE_SIZE, 0, color)
+        svg.ellipse(point, NOTE_RX, NOTE_RY, 0, color)
     elif accidental == "sharp":
         svg.polygon(
             [
-                Point(point.x - (1.1 * NOTE_SIZE), point.y - (0.7 * NOTE_SIZE)),
-                Point(point.x - (1.1 * NOTE_SIZE), point.y + (0.7 * NOTE_SIZE)),
-                Point(point.x + (1.1 * NOTE_SIZE), point.y),
+                Point(point.x - NOTE_RX, point.y - NOTE_RY),
+                Point(point.x - NOTE_RX, point.y + NOTE_RY),
+                Point(point.x + NOTE_RX, point.y),
             ],
             color,
         )
