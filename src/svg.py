@@ -11,10 +11,9 @@ class Point:
 
 
 class SVG:
+    # TODO: Add margin, either by translating each or translating a container <g>
     def __init__(self, margin_w: int, margin_h: int, bg_color: str = "white") -> None:
-        self.svg = svgwrite.Drawing(
-            style=f"background-color: {bg_color}; padding: {margin_h}px {margin_w}px;"
-        )
+        self.svg = svgwrite.Drawing(style=f"background-color: {bg_color};")
         self.width: float = 0
         self.height: float = 0
         self.margin_w = margin_w
@@ -72,10 +71,10 @@ class SVG:
 
     def __str__(self) -> str:
         # It's ugly but works
-        width = self.width + (2 * self.margin_w)
-        height = self.height + (2 * self.margin_h)
+        width = self.width
+        height = self.height
         return (
             str(self.svg.tostring())
-            .replace('width="100%"', f'width="{width}"')
-            .replace('height="100%"', f'height="{height}"')
+            .replace('width="100%"', f'width="{int(width)}"')
+            .replace('height="100%"', f'height="{int(height)}"')
         )
