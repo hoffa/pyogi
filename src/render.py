@@ -13,7 +13,7 @@ STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 NOTE_SIZE = 10
 
 NOTE_RX = 1.1 * NOTE_SIZE
-NOTE_RY = 0.7 * NOTE_SIZE
+NOTE_RY = 0.95 * 0.7 * NOTE_SIZE
 
 THIN_LINE_WIDTH = 1
 THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
@@ -22,7 +22,7 @@ THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 def draw_note(svg: SVG, note: Note, point: Point) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, NOTE_RX, 0.95 * NOTE_RY, 0)
+        svg.ellipse(point, NOTE_RX, NOTE_RY, 0)
     elif accidental == "sharp":
         svg.polygon(
             [
