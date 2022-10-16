@@ -21,11 +21,11 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 
 ![](media/modern.png)
 
-And here using the Pyogi notation (see [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition) in a few different themes:
+And here using the Pyogi notation:
 
 ![](testdata/output/debussy-deux-arabesques-short.svg)
 
-See [`examples.md`](examples.md) for more examples.
+See [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition, and [`examples.md`](examples.md) for more examples.
 
 ## The notation in 1 minute
 
