@@ -5,17 +5,19 @@ from svg import SVG, Point
 
 NUM_NOTES = 7
 
-WHOLE_NOTE_WIDTH = 100
-STAFF_SPACE_HEIGHT = 17
+SCALE = 0.5
+
+WHOLE_NOTE_WIDTH = SCALE * 100
+STAFF_SPACE_HEIGHT = SCALE * 17
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
-NOTE_SIZE = 10
+NOTE_SIZE = SCALE * 10
 
 NOTE_RX = 1.1 * NOTE_SIZE
 NOTE_RY = 0.95 * 0.7 * NOTE_SIZE
 
-THIN_LINE_WIDTH = 1
+THIN_LINE_WIDTH = SCALE * 1.3
 THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 
 
@@ -34,7 +36,7 @@ def draw_note(svg: SVG, note: Note, point: Point) -> None:
         )
 
 
-def line_width_at_index(index: int) -> int:
+def line_width_at_index(index: int) -> float:
     index %= NUM_NOTES
     if index == 0:
         return THICK_LINE_WIDTH
