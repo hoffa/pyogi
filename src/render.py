@@ -1,4 +1,4 @@
-from typing import List, TypedDict
+from typing import Iterator, List, TypedDict
 
 from parse import Note
 from svg import SVG, Point
@@ -80,12 +80,16 @@ def draw_staves(svg: SVG, origin: Point, count: int, width: float, color: str) -
         draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, color)
 
 
-def normalize_notes(notes: List[Note]) -> None:
+def normalize_notes(notes: List[Note]) -> Iterator[Note]:
     # Shift everything as much as possible
     min_note = min(note.note for note in notes)
     sub = (min_note // NUM_NOTES) * NUM_NOTES
     for note in notes:
-        note.note -= sub
+        yield Note(
+            note.time,
+            note.note - sub,
+            note.accidental,
+        )
 
 
 def get_width(notes: List[Note]) -> float:
@@ -112,7 +116,7 @@ def render(score: List[List[Note]], theme: Theme) -> str:
     width = max(get_width(notes) for notes in score)
     y: float = 0
     for notes in score:
-        normalize_notes(notes)
+        notes = list(normalize_notes(notes))
         height = draw_notes_with_staves(svg, theme, Point(0, y), notes, width)
         y += height + STAFF_HEIGHT
     return str(svg)
