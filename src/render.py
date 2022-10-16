@@ -56,10 +56,8 @@ def draw_notes(svg: SVG, origin: Point, notes: List[Note], theme: Theme) -> None
         draw_note(svg, note, position, color)
 
 
-def draw_staff(
-    svg: SVG, origin: Point, width: float, draw_top: bool, color: str
-) -> None:
-    for i in range(8 if draw_top else 7):
+def draw_staff(svg: SVG, origin: Point, width: float, color: str) -> None:
+    for i in range(7):
         line_width = line_width_at_index(i)
         if line_width > 0:
             line_y = origin.y + STAFF_HEIGHT - (i * HALF_STAFF_SPACE)
@@ -73,10 +71,7 @@ def draw_staff(
 
 def draw_staves(svg: SVG, origin: Point, count: int, width: float, color: str) -> None:
     for i in range(count):
-        draw_top = i == 0
-        draw_staff(
-            svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, draw_top, color
-        )
+        draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width, color)
 
 
 def normalize_notes(notes: List[Note]) -> None:
