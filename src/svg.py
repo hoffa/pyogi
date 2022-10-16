@@ -46,17 +46,6 @@ class SVG:
             )
         )
 
-    def circle(self, center: Point, radius: float, color: str = "black") -> None:
-        self._update_size(center)
-        self._add(
-            self.svg.circle(
-                (center.x, center.y),
-                radius,
-                fill=color,
-                stroke=color,
-            )
-        )
-
     def polygon(self, points: List[Point], color: str = "black") -> None:
         for point in points:
             self._update_size(point)
