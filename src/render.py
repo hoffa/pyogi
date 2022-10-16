@@ -22,7 +22,7 @@ THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 def draw_note(svg: SVG, note: Note, point: Point) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, NOTE_RX, NOTE_RY, 0)
+        svg.ellipse(point, NOTE_RX, NOTE_RY, -25)
     elif accidental == "sharp":
         svg.polygon(
             [
