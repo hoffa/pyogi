@@ -42,6 +42,7 @@ class SVG:
                 (end.x, end.y),
                 stroke_width=width,
                 stroke=color,
+                stroke_linecap="square",
             )
         )
 
