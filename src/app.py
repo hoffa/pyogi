@@ -4,8 +4,7 @@ from pathlib import Path
 
 import streamlit as st
 
-from parse import parse
-from render import render
+from common import parse_and_render
 
 st.set_page_config(page_title="Pyogi Converter", page_icon=":notes:")
 st.title("Pyogi Converter")
@@ -23,5 +22,5 @@ if f:
             paths = list(Path(dir).glob("*.xml"))
             if len(paths) == 1:
                 filename = paths[0]
-                b = render(list(parse(filename)))
+                b = parse_and_render(filename)
                 st.image(b)
