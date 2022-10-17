@@ -22,7 +22,7 @@ if f:
             paths = list(Path(dir).glob("*.xml"))
             if len(paths) == 1:
                 filename = paths[0]
-                b = render(parse(filename))
+                b = render(parse(filename), f.name)
                 st.subheader("Result")
                 st.image(b)
                 st.download_button("Download", b, "result.svg")

@@ -10,7 +10,7 @@ def main() -> None:
     parser.add_argument("file", type=Path)
     args = parser.parse_args()
 
-    print(render(parse(args.file)))
+    print(render(parse(args.file), args.file))
 
 
 if __name__ == "__main__":

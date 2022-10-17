@@ -73,6 +73,17 @@ class SVG:
         shape.rotate(angle, (center.x, center.y))
         self._add(shape)
 
+    def text(self, origin: Point, s: str, size: int) -> None:
+        self._add(
+            self.svg.text(
+                s,
+                insert=(origin.x, origin.y),
+                alignment_baseline="middle",
+                font_family="serif",
+                font_size=f"{size}px",
+            )
+        )
+
     def __str__(self) -> str:
         # It's ugly but works
         width = self.width + (2 * self.margin_w)
