@@ -110,6 +110,7 @@ def draw_notes_with_staves(
 
 
 TOP_STAVE_PADDING = STAFF_HEIGHT
+PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 
 def render(score: List[List[Note]], title: str) -> str:
@@ -121,13 +122,13 @@ def render(score: List[List[Note]], title: str) -> str:
     width = max(get_width(notes) for notes in score) + (2 * EDGE_NOTE_PADDING)
     staves_count = [get_num_staves(notes) for notes in score]
     # gap + staff heights
-    staves_height = ((len(staves_count) - 1) * STAFF_HEIGHT) + sum(
+    staves_height = ((len(staves_count) - 1) * PART_GAP_HEIGHT) + sum(
         staves_count
     ) * STAFF_HEIGHT
     y = TOP_STAVE_PADDING
     for notes in score:
         height = draw_notes_with_staves(svg, Point(0, y), notes, width)
-        y += height + STAFF_HEIGHT
+        y += height + PART_GAP_HEIGHT
     svg.line(
         Point(0, TOP_STAVE_PADDING),
         Point(0, TOP_STAVE_PADDING + staves_height),
