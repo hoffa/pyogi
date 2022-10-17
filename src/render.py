@@ -115,7 +115,7 @@ PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 def render(score: List[List[Note]], title: str) -> str:
     score = [list(normalize_notes(notes)) for notes in score]
-    svg = SVG(margin_w=int(STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
+    svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
 
     svg.text(Point(0, 0), title, 25)
 
