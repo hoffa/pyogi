@@ -117,7 +117,7 @@ def render(score: List[List[Note]], title: str) -> str:
     svg = SVG(margin_w=int(STAFF_HEIGHT), margin_h=int(STAFF_HEIGHT))
 
     title_y = 0.25 * TOP_STAVE_PADDING
-    svg.text(Point(0, title_y), title, 30)
+    svg.text(Point(0, title_y), title, 25)
 
     width = max(get_width(notes) for notes in score) + (2 * EDGE_NOTE_PADDING)
     staves_count = [get_num_staves(notes) for notes in score]
