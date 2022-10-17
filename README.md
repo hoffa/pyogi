@@ -26,7 +26,9 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 
 And here using the Pyogi notation:
 
-![](testdata/output/debussy-deux-arabesques-short.svg)
+<p align="center">
+  <img alt="" src="testdata/output/debussy-deux-arabesques-short.svg">
+</p>
 
 See [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/debussy-deux-arabesques.svg) for the full composition, and [`examples.md`](examples.md) for more examples.
 
