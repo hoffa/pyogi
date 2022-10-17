@@ -93,23 +93,35 @@ def get_width(notes: List[Note]) -> float:
     return max(note.time for note in notes) * WHOLE_NOTE_WIDTH
 
 
+def get_num_staves(notes: List[Note]) -> int:
+    max_note = max(note.note for note in notes)
+    num_staves = (max_note // NUM_NOTES) + 1
+    return num_staves
+
+
 def draw_notes_with_staves(
     svg: SVG, origin: Point, notes: List[Note], width: float
 ) -> float:
-    max_note = max(note.note for note in notes)
-    num_staves = (max_note // NUM_NOTES) + 1
+    num_staves = get_num_staves(notes)
     height = num_staves * STAFF_HEIGHT
-    draw_staves(svg, origin, num_staves, width + (2 * EDGE_NOTE_PADDING))
+    draw_staves(svg, origin, num_staves, width)
     draw_notes(svg, Point(origin.x + EDGE_NOTE_PADDING, origin.y + height), notes)
     return height
 
 
 def render(score: List[List[Note]]) -> str:
+    score = [list(normalize_notes(notes)) for notes in score]
     svg = SVG(margin_w=int(STAFF_HEIGHT), margin_h=int(STAFF_HEIGHT))
-    width = max(get_width(notes) for notes in score)
+    width = max(get_width(notes) for notes in score) + (2 * EDGE_NOTE_PADDING)
+    staves_count = [get_num_staves(notes) for notes in score]
+    # gap + staff heights
+    staves_height = ((len(staves_count) - 1) * STAFF_HEIGHT) + sum(
+        staves_count
+    ) * STAFF_HEIGHT
     y: float = 0
     for notes in score:
-        notes = list(normalize_notes(notes))
         height = draw_notes_with_staves(svg, Point(0, y), notes, width)
         y += height + STAFF_HEIGHT
+    svg.line(Point(0, 0), Point(0, staves_height), THICK_LINE_WIDTH)
+    svg.line(Point(width, 0), Point(width, staves_height), THICK_LINE_WIDTH)
     return str(svg)
