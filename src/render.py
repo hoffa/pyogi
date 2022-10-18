@@ -113,8 +113,9 @@ TOP_STAVE_PADDING = STAFF_HEIGHT
 PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 
-def draw_score_row(svg: SVG, origin: Point, score: List[List[Note]]) -> None:
-    width = max(get_width(notes) for notes in score) + (2 * EDGE_NOTE_PADDING)
+def draw_score_row(
+    svg: SVG, origin: Point, score: List[List[Note]], staff_width: float
+) -> None:
     staves_count = [get_num_staves(notes) for notes in score]
     # gap + staff heights
     staves_height = ((len(staves_count) - 1) * PART_GAP_HEIGHT) + sum(
@@ -123,7 +124,7 @@ def draw_score_row(svg: SVG, origin: Point, score: List[List[Note]]) -> None:
     y: float = 0
     for notes in score:
         height = draw_notes_with_staves(
-            svg, Point(origin.x, origin.y + y), notes, width
+            svg, Point(origin.x, origin.y + y), notes, staff_width
         )
         y += height + PART_GAP_HEIGHT
     svg.line(
@@ -132,8 +133,8 @@ def draw_score_row(svg: SVG, origin: Point, score: List[List[Note]]) -> None:
         THICK_LINE_WIDTH,
     )
     svg.line(
-        Point(origin.x + width, origin.y),
-        Point(origin.x + width, origin.y + staves_height),
+        Point(origin.x + staff_width, origin.y),
+        Point(origin.x + staff_width, origin.y + staves_height),
         THICK_LINE_WIDTH,
     )
 
@@ -145,6 +146,7 @@ def render(score: List[List[Note]], title: str) -> str:
     svg.text(Point(0, 0), title, 25)
 
     origin = Point(0, TOP_STAVE_PADDING)
-    draw_score_row(svg, origin, score)
+    staff_width = max(get_width(notes) for notes in score) + (2 * EDGE_NOTE_PADDING)
+    draw_score_row(svg, origin, score, staff_width)
 
     return str(svg)
