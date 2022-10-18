@@ -120,9 +120,11 @@ def draw_score_row(svg: SVG, origin: Point, score: List[List[Note]]) -> None:
     staves_height = ((len(staves_count) - 1) * PART_GAP_HEIGHT) + sum(
         staves_count
     ) * STAFF_HEIGHT
-    y = origin.y
+    y: float = 0
     for notes in score:
-        height = draw_notes_with_staves(svg, Point(0, y), notes, width)
+        height = draw_notes_with_staves(
+            svg, Point(origin.x, origin.y + y), notes, width
+        )
         y += height + PART_GAP_HEIGHT
     svg.line(
         Point(origin.x, origin.y),
