@@ -115,7 +115,7 @@ def draw_notes_with_staves(
     return height
 
 
-TOP_STAVE_PADDING = 2 * STAFF_HEIGHT
+TOP_STAVE_PADDING = 3 * STAFF_HEIGHT
 PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 
