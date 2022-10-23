@@ -215,7 +215,14 @@ def render(score: List[List[Note]], title: str) -> str:
     origin = Point(0, TOP_STAVE_PADDING)
 
     STAFF_WIDTH = 15
-    a = [list(split_note_rows(notes, STAFF_WIDTH)) for notes in score]
+    a = [
+        list(
+            split_note_rows(
+                notes, STAFF_WIDTH - (2 * EDGE_NOTE_PADDING / WHOLE_NOTE_WIDTH)
+            )
+        )
+        for notes in score
+    ]
     b = zip_score_rows(a)
 
     draw_score_rows(svg, origin, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH)
