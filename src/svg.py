@@ -81,6 +81,7 @@ class SVG:
                 alignment_baseline="middle",
                 font_family="serif",
                 font_size=f"{size}px",
+                text_anchor="middle",
             )
         )
 

@@ -115,7 +115,7 @@ def draw_notes_with_staves(
     return height
 
 
-TOP_STAVE_PADDING = STAFF_HEIGHT
+TOP_STAVE_PADDING = 2 * STAFF_HEIGHT
 PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 
@@ -209,12 +209,12 @@ def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]
 
 def render(score: List[List[Note]], title: str) -> str:
     svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
+    STAFF_WIDTH = 15
 
-    svg.text(Point(0, 0), title, 25)
+    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, 0), title, 25)
 
     origin = Point(0, TOP_STAVE_PADDING)
 
-    STAFF_WIDTH = 15
     a = [
         list(
             split_note_rows(
