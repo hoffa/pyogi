@@ -1,4 +1,6 @@
-from typing import Iterator, List
+import sys
+from collections import defaultdict
+from typing import Any, Iterator, List
 
 from parse import Note
 from svg import SVG, Point
@@ -79,6 +81,8 @@ def draw_staves(svg: SVG, origin: Point, count: int, width: float) -> None:
 
 def normalize_notes(notes: List[Note]) -> Iterator[Note]:
     # Shift everything as much as possible
+    if not notes:
+        return
     min_note = min(note.note for note in notes)
     sub = (min_note // NUM_NOTES) * NUM_NOTES
     for note in notes:
@@ -94,6 +98,8 @@ def get_width(notes: List[Note]) -> float:
 
 
 def get_num_staves(notes: List[Note]) -> int:
+    if not notes:
+        return 1
     max_note = max(note.note for note in notes)
     num_staves = (max_note // NUM_NOTES) + 1
     return num_staves
@@ -150,13 +156,68 @@ def draw_score_rows(
         point.y += height + (3 * STAFF_HEIGHT)
 
 
+def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]]:
+    # TODO: should row_length be based on whole note and not absolute x?
+    # Maybe that'll cut it off at more natural place!
+    r = defaultdict(list)
+    for note in notes:
+        x = note.time % row_length
+        row = note.time // row_length
+        r[row].append(
+            Note(
+                time=x,
+                note=note.note,
+                accidental=note.accidental,
+            )
+        )
+    for row in range(len(r)):
+        yield r[row]
+
+
+# split of each row in original score, gives more rows
+# then zip up each by index
+
+#
+# [[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']]
+#              to
+# [ [ [1, 2, 3, 4], [5, 6, 7, 8], [9, 0, 1, 2]], [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l'] ] ]
+#              to
+# [[[1, 2, 3, 4], ['a', 'b', 'c', 'd']], [[5, 6, 7, 8], ['e', 'f', 'g', 'h']], [[9, 0, 1, 2], ['i', 'j', 'k', 'l']]]
+#
+# need to know how many parts fixed, n rows
+
+
+def log(*v: Any) -> None:
+    print(v, file=sys.stderr)
+
+
+def getindex(v: List[Any], i: int, default: Any) -> Any:
+    if 0 <= i < len(v):
+        return v[i]
+    return default
+
+
+def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]:
+    d = []
+    # TODO: Support more than 2 parts
+    v = score_rows[0]
+    w = score_rows[1]
+    for i in range(len(score_rows[0])):
+        d.append([getindex(v, i, []), getindex(w, i, [])])
+    return d
+
+
 def render(score: List[List[Note]], title: str) -> str:
     svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
 
     svg.text(Point(0, 0), title, 25)
 
     origin = Point(0, TOP_STAVE_PADDING)
-    staff_width = max(get_width(notes) for notes in score) + (2 * EDGE_NOTE_PADDING)
-    draw_score_rows(svg, origin, [score], staff_width)
+
+    STAFF_WIDTH = 15
+    a = [list(split_note_rows(notes, STAFF_WIDTH)) for notes in score]
+    b = zip_score_rows(a)
+
+    draw_score_rows(svg, origin, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH)
 
     return str(svg)
