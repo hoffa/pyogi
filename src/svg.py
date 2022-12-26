@@ -61,14 +61,22 @@ class SVG:
         )
 
     def ellipse(
-        self, center: Point, rx: float, ry: float, angle: float, color: str = "black"
+        self,
+        center: Point,
+        rx: float,
+        ry: float,
+        angle: float,
+        color: str = "black",
+        stroke: str = "black",
+        stroke_width: float = 1,
     ) -> None:
         self._update_size(center)
         shape = self.svg.ellipse(
             (center.x, center.y),
             (rx, ry),
             fill=color,
-            stroke=color,
+            stroke=stroke,
+            stroke_width=stroke_width,
         )
         shape.rotate(angle, (center.x, center.y))
         self._add(shape)

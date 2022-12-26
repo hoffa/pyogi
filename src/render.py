@@ -20,22 +20,17 @@ NOTE_RX = 1.1 * NOTE_SIZE
 NOTE_RY = 0.95 * 0.7 * NOTE_SIZE
 
 THIN_LINE_WIDTH = SCALE * 1.3
-THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
+THICK_LINE_WIDTH = 2.8 * THIN_LINE_WIDTH
 
 
 def draw_note(svg: SVG, note: Note, point: Point) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, 0.9 * NOTE_RX, 0.8 * NOTE_RY, -20)
-    elif accidental == "sharp":
-        x_left = point.x - (1.1 * NOTE_RX)
-        svg.polygon(
-            [
-                Point(x_left, point.y - 1.0 * NOTE_RY),
-                Point(x_left, point.y + 1.0 * NOTE_RY),
-                Point(point.x + (1.2 * NOTE_RX), point.y),
-            ],
+        svg.ellipse(
+            point, 0.9 * NOTE_RX, 0.8 * NOTE_RY, -20, "white", "black", THICK_LINE_WIDTH
         )
+    elif accidental == "sharp":
+        svg.ellipse(point, 0.9 * NOTE_RX, 0.8 * NOTE_RY, -20)
 
 
 def line_width_at_index(index: int) -> float:
