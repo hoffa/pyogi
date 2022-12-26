@@ -10,7 +10,7 @@ NUM_NOTES = 7
 SCALE = 0.5
 
 WHOLE_NOTE_WIDTH = SCALE * 110
-STAFF_SPACE_HEIGHT = SCALE * 17
+STAFF_SPACE_HEIGHT = SCALE * 19
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
@@ -26,13 +26,13 @@ THICK_LINE_WIDTH = 2 * THIN_LINE_WIDTH
 def draw_note(svg: SVG, note: Note, point: Point) -> None:
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(point, 0.9 * NOTE_RX, NOTE_RY, -25)
+        svg.ellipse(point, 0.9 * NOTE_RX, 0.8 * NOTE_RY, -20)
     elif accidental == "sharp":
-        x_left = point.x - (0.875 * NOTE_RX)
+        x_left = point.x - (1.1 * NOTE_RX)
         svg.polygon(
             [
-                Point(x_left, point.y - 1.1 * NOTE_RY),
-                Point(x_left, point.y + 1.1 * NOTE_RY),
+                Point(x_left, point.y - 1.0 * NOTE_RY),
+                Point(x_left, point.y + 1.0 * NOTE_RY),
                 Point(point.x + (1.2 * NOTE_RX), point.y),
             ],
         )
