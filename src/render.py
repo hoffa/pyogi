@@ -27,10 +27,12 @@ def draw_note(svg: SVG, note: Note, point: Point) -> None:
     accidental = note.accidental
     if accidental == "natural":
         svg.ellipse(
-            point, 0.9 * NOTE_RX, 0.8 * NOTE_RY, -20, "white", "black", THICK_LINE_WIDTH
+            point, 0.9 * NOTE_RX, 0.9 * NOTE_RY, -20, "white", "black", THICK_LINE_WIDTH
         )
     elif accidental == "sharp":
-        svg.ellipse(point, 0.9 * NOTE_RX, 0.8 * NOTE_RY, -20)
+        svg.ellipse(
+            point, 0.9 * NOTE_RX, 0.9 * NOTE_RY, -20, "black", "black", THICK_LINE_WIDTH
+        )
 
 
 def line_width_at_index(index: int) -> float:
