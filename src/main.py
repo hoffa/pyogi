@@ -33,15 +33,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file", type=Path)
     parser.add_argument("title")
-    parser.add_argument("--yratio", type=float, default=1.414)  # A4
+    parser.add_argument("--svg", type=Path)
     parser.add_argument("--pdf", type=Path)
     args = parser.parse_args()
 
     subtitle, title = args.title.split("{sub}", 1)
 
-    svgs = render(parse(args.file), title, subtitle, args.yratio)
-
     if args.pdf:
+        yratio = 1.414  # A4
+        svgs = render(parse(args.file), title, subtitle, yratio)
         with tempfile.TemporaryDirectory() as _tmpdir:
             tmpdir = Path(_tmpdir)
             pdf_paths = []
@@ -54,9 +54,12 @@ def main() -> None:
                 svg2pdf(page_path, pdf_page_path)
 
             merge_pdf(args.pdf, pdf_paths)
-    else:
-        # One line per page
-        print("\n".join(str(svg) for svg in svgs))
+
+    if args.svg:
+        yratio = float("inf")  # Single SVG
+        svgs = render(parse(args.file), title, subtitle, yratio)
+        assert len(svgs) == 1
+        args.svg.write_text(str(svgs[0]))
 
 
 if __name__ == "__main__":
