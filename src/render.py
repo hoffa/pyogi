@@ -172,7 +172,7 @@ def draw_score_rows(
     for row in score_rows:
         row = [list(normalize_notes(notes)) for notes in row]
         height = get_staves_height(row)
-        if point.y + height + GAP_HEIGHT > max_y:
+        if point.y + height > max_y:
             svgs.append(svg)
             svg, origin = new_page()
             point = Point(origin.x, origin.y)
