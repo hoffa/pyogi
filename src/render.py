@@ -94,12 +94,35 @@ def get_width(notes: List[Note]) -> float:
     return max(note.time for note in notes) * WHOLE_NOTE_WIDTH
 
 
+"""
+
+0 -> 1
+1 -> 1
+...
+7 -> 1
+8 -> 2
+9 -> 2
+...
+13 -> 2
+14 -> 2
+15 -> 3
+
+it's not max note
+
+"""
+
+
 def get_num_staves(notes: List[Note]) -> int:
     if not notes:
         return 1
     max_note = max(note.note for note in notes)
-    num_staves = (max_note // NUM_NOTES) + 1
-    return num_staves
+    if max_note == 0:
+        return 1
+    r = max_note // NUM_NOTES
+    q = max_note % NUM_NOTES
+    if q == 0:
+        return r
+    return r + 1
 
 
 def draw_notes_with_staves(
