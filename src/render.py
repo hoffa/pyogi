@@ -97,24 +97,6 @@ def get_width(notes: List[Note]) -> float:
     return max(note.time for note in notes) * WHOLE_NOTE_WIDTH
 
 
-"""
-
-0 -> 1
-1 -> 1
-...
-7 -> 1
-8 -> 2
-9 -> 2
-...
-13 -> 2
-14 -> 2
-15 -> 3
-
-it's not max note
-
-"""
-
-
 def get_num_staves(notes: List[Note]) -> int:
     if not notes:
         return 1
@@ -219,19 +201,6 @@ def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]
         )
     for row in range(len(r)):
         yield r[row]
-
-
-# split of each row in original score, gives more rows
-# then zip up each by index
-
-#
-# [[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2], ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']]
-#              to
-# [ [ [1, 2, 3, 4], [5, 6, 7, 8], [9, 0, 1, 2]], [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l'] ] ]
-#              to
-# [[[1, 2, 3, 4], ['a', 'b', 'c', 'd']], [[5, 6, 7, 8], ['e', 'f', 'g', 'h']], [[9, 0, 1, 2], ['i', 'j', 'k', 'l']]]
-#
-# need to know how many parts fixed, n rows
 
 
 def log(*v: Any) -> None:

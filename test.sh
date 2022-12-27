@@ -1,15 +1,8 @@
 #!/usr/bin/env bash
 set -eux
 
-echo '# Examples' >examples.md
-
 mkdir -p .tmp
 
-# it should test both svg and pdf
-# svg should always be a continuous file, pdf always a page, with no configuration option
-# so probably --svg and --pdf
-
-# Test all inputs with a single scroll (huge yratio)
 for f in testdata/input/*.mxl; do
 	bname=$(basename "$f" .mxl)
 	expected_svg=testdata/output/${bname}.svg
@@ -29,7 +22,10 @@ for f in testdata/input/*.mxl; do
 
 	cmp "${expected_svg}" "${tmp_svg}"
 	cmp "${expected_pdf}" "${tmp_pdf}"
+done
 
-	printf "## [\`${expected_svg}\`](https://raw.githubusercontent.com/hoffa/notation/main/${expected_svg})\n\n" >>examples.md
-	printf "![](${expected_svg})\n\n" >>examples.md
+echo '# Examples' >examples.md
+for f in testdata/output/*.svg; do
+	printf "## [\`$f\`](https://raw.githubusercontent.com/hoffa/notation/main/$f)\n\n" >>examples.md
+	printf "![]($f)\n\n" >>examples.md
 done
