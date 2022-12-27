@@ -12,7 +12,7 @@ SCALE = 0.5
 STAFF_WIDTH = 15
 
 WHOLE_NOTE_WIDTH = SCALE * 110
-MAX_Y = SCALE * 600
+MAX_Y = SCALE * 800000
 STAFF_SPACE_HEIGHT = SCALE * 19
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
@@ -142,14 +142,22 @@ TOP_STAVE_PADDING = 3 * STAFF_HEIGHT
 PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 
-def draw_score_row(
-    svg: SVG, origin: Point, score: List[List[Note]], staff_width: float
-) -> float:
+def get_staves_height(score: List[List[Note]]) -> float:
     staves_count = [get_num_staves(notes) for notes in score]
     # gap + staff heights
     staves_height = ((len(staves_count) - 1) * PART_GAP_HEIGHT) + sum(
         staves_count
     ) * STAFF_HEIGHT
+    return staves_height
+
+
+def draw_score_row(
+    svg: SVG,
+    origin: Point,
+    score: List[List[Note]],
+    staff_width: float,
+    staves_height: float,
+) -> float:
     y: float = 0
     for notes in score:
         height = draw_notes_with_staves(
@@ -176,11 +184,14 @@ def draw_score_rows(
     point = Point(origin.x, origin.y)
     for row in score_rows:
         row = [list(normalize_notes(notes)) for notes in row]
-        height = draw_score_row(svg, point, row, staff_width)
+        staves_height = get_staves_height(row)
+        height = draw_score_row(svg, point, row, staff_width, staves_height)
         new_y = point.y + height + (3 * STAFF_HEIGHT)
-        # if new_y > MAX_Y:
         # point.y = 0; then draw
-        #    pass
+        if new_y > MAX_Y:
+            yield svg
+            point.y = 0
+            svg, _ = new_page()
         point.y = new_y
     yield svg
 
@@ -237,7 +248,7 @@ def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]
 
 
 # return page and origin
-def new_page(title: Optional[Tuple[str, str]]) -> Tuple[SVG, Point]:
+def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
     svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
     if not title:
         origin = Point(0, 0)
