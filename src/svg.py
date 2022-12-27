@@ -81,7 +81,9 @@ class SVG:
         shape.rotate(angle, (center.x, center.y))
         self._add(shape)
 
-    def text(self, origin: Point, s: str, size: int) -> None:
+    def text(
+        self, origin: Point, s: str, size: int, font_weight: str = "normal"
+    ) -> None:
         self._add(
             self.svg.text(
                 s,
@@ -90,6 +92,7 @@ class SVG:
                 font_family="serif",
                 font_size=f"{size}px",
                 text_anchor="middle",
+                font_weight=font_weight,
             )
         )
 

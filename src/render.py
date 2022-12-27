@@ -242,7 +242,7 @@ def new_page(title: Optional[Tuple[str, str]]) -> Tuple[SVG, Point]:
     if not title:
         origin = Point(0, 0)
         return svg, origin
-    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, -20), title[0], 25)
+    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, -20), title[0], 25, "bold")
     svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, 20), title[1], 20)
     origin = Point(0, TOP_STAVE_PADDING)
     return svg, origin
