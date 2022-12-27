@@ -8,9 +8,10 @@ from render import render
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file", type=Path)
+    parser.add_argument("title")
     args = parser.parse_args()
 
-    print(render(parse(args.file), args.file))
+    print(render(parse(args.file), args.title))
 
 
 if __name__ == "__main__":
