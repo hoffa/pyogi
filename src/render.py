@@ -170,8 +170,9 @@ def draw_score_row(
 
 
 def draw_score_rows(
-    svg: SVG, origin: Point, score_rows: List[List[List[Note]]], staff_width: float
-) -> None:
+    title: str, subtitle: str, score_rows: List[List[List[Note]]], staff_width: float
+) -> Iterator[SVG]:
+    svg, origin = new_page((title, subtitle))
     point = Point(origin.x, origin.y)
     for row in score_rows:
         row = [list(normalize_notes(notes)) for notes in row]
@@ -181,6 +182,7 @@ def draw_score_rows(
         # point.y = 0; then draw
         #    pass
         point.y = new_y
+    yield svg
 
 
 def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]]:
@@ -257,7 +259,6 @@ def render(score: List[List[Note]], title: str, subtitle: str) -> List[SVG]:
     ]
     b = zip_score_rows(a)
 
-    svg, origin = new_page((title, subtitle))
-    draw_score_rows(svg, origin, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH)
+    svgs = list(draw_score_rows(title, subtitle, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH))
 
-    return [svg]
+    return svgs
