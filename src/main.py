@@ -13,7 +13,8 @@ def main() -> None:
 
     subtitle, title = args.title.split("{sub}", 1)
 
-    print(render(parse(args.file), title, subtitle))
+    # One line per page
+    print("\n".join(render(parse(args.file), title, subtitle)))
 
 
 if __name__ == "__main__":

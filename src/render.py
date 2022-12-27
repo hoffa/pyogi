@@ -227,7 +227,7 @@ def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]
     return d
 
 
-def render(score: List[List[Note]], title: str, subtitle: str) -> str:
+def render(score: List[List[Note]], title: str, subtitle: str) -> List[str]:
     svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
     STAFF_WIDTH = 15
 
@@ -248,4 +248,4 @@ def render(score: List[List[Note]], title: str, subtitle: str) -> str:
 
     draw_score_rows(svg, origin, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH)
 
-    return str(svg)
+    return [str(svg)]
