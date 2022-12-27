@@ -1,6 +1,6 @@
 import sys
 from collections import defaultdict
-from typing import Any, Iterator, List
+from typing import Any, Iterator, List, Optional, Tuple
 
 from parse import Note
 from svg import SVG, Point
@@ -9,7 +9,10 @@ NUM_NOTES = 7
 
 SCALE = 0.5
 
+STAFF_WIDTH = 15
+
 WHOLE_NOTE_WIDTH = SCALE * 110
+MAX_Y = SCALE * 600
 STAFF_SPACE_HEIGHT = SCALE * 19
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
@@ -173,7 +176,11 @@ def draw_score_rows(
     for row in score_rows:
         row = [list(normalize_notes(notes)) for notes in row]
         height = draw_score_row(svg, point, row, staff_width)
-        point.y += height + (3 * STAFF_HEIGHT)
+        new_y = point.y + height + (3 * STAFF_HEIGHT)
+        # if new_y > MAX_Y:
+        # point.y = 0; then draw
+        #    pass
+        point.y = new_y
 
 
 def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]]:
@@ -227,15 +234,19 @@ def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]
     return d
 
 
-def render(score: List[List[Note]], title: str, subtitle: str) -> List[str]:
+# return page and origin
+def new_page(title: Optional[Tuple[str, str]]) -> Tuple[SVG, Point]:
     svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
-    STAFF_WIDTH = 15
-
-    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, -20), title, 25)
-    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, 20), subtitle, 20)
-
+    if not title:
+        origin = Point(0, 0)
+        return svg, origin
+    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, -20), title[0], 25)
+    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, 20), title[1], 20)
     origin = Point(0, TOP_STAVE_PADDING)
+    return svg, origin
 
+
+def render(score: List[List[Note]], title: str, subtitle: str) -> List[str]:
     a = [
         list(
             split_note_rows(
@@ -246,6 +257,7 @@ def render(score: List[List[Note]], title: str, subtitle: str) -> List[str]:
     ]
     b = zip_score_rows(a)
 
+    svg, origin = new_page((title, subtitle))
     draw_score_rows(svg, origin, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH)
 
     return [str(svg)]
