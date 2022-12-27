@@ -3,7 +3,7 @@
 [![Tests](https://github.com/hoffa/notation/actions/workflows/build.yml/badge.svg)](https://github.com/hoffa/notation/actions/workflows/build.yml)
 [![CC BY-NC-ND 4.0](https://img.shields.io/badge/license-CC%20BY--NC--ND%204.0-blue)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-A simpler music notation for casual piano learners. Still a work in progress.
+A simpler music notation for casual piano learners.
 
 ## Why?
 
