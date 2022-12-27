@@ -36,8 +36,8 @@ See [here](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output
 
 - Thick lines are [C notes](<https://en.wikipedia.org/wiki/C_(musical_note)>).
 - The higher the note, the higher the pitch.
-- Ovals are naturals (i.e. white keys).
-- Triangles are sharps (i.e. black keys).
+- White notes are naturals.
+- Black notes are sharps.
 
 There are no explicit flats, rests, note values, time signatures, key signatures, etc. Play what sounds good.
 
