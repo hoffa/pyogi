@@ -14,7 +14,7 @@ def main() -> None:
     subtitle, title = args.title.split("{sub}", 1)
 
     # One line per page
-    print("\n".join(render(parse(args.file), title, subtitle)))
+    print("\n".join(str(svg) for svg in render(parse(args.file), title, subtitle)))
 
 
 if __name__ == "__main__":

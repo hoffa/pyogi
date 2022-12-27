@@ -246,7 +246,7 @@ def new_page(title: Optional[Tuple[str, str]]) -> Tuple[SVG, Point]:
     return svg, origin
 
 
-def render(score: List[List[Note]], title: str, subtitle: str) -> List[str]:
+def render(score: List[List[Note]], title: str, subtitle: str) -> List[SVG]:
     a = [
         list(
             split_note_rows(
@@ -260,4 +260,4 @@ def render(score: List[List[Note]], title: str, subtitle: str) -> List[str]:
     svg, origin = new_page((title, subtitle))
     draw_score_rows(svg, origin, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH)
 
-    return [str(svg)]
+    return [svg]
