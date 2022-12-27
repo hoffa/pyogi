@@ -42,7 +42,7 @@ There are no explicit flats, rests, note values, time signatures, key signatures
 
 ```bash
 make init
-.venv/bin/python src/main.py score.mxl > score.svg
+.venv/bin/python src/main.py score.mxl --pdf score.pdf
 ```
 
 Where `score.mxl` is a compressed [MusicXML](https://en.wikipedia.org/wiki/MusicXML) file.
