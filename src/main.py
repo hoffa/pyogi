@@ -11,7 +11,9 @@ def main() -> None:
     parser.add_argument("title")
     args = parser.parse_args()
 
-    print(render(parse(args.file), args.title))
+    subtitle, title = args.title.split("{sub}", 1)
+
+    print(render(parse(args.file), title, subtitle))
 
 
 if __name__ == "__main__":
