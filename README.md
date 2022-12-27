@@ -41,7 +41,8 @@ There are no explicit flats, rests, note values, time signatures, key signatures
 ## Usage
 
 ```bash
-./render.sh score.mxl > score.svg
+make init
+.venv/bin/python src/main.py score.mxl > score.svg
 ```
 
 Where `score.mxl` is a compressed [MusicXML](https://en.wikipedia.org/wiki/MusicXML) file.
