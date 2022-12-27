@@ -12,7 +12,7 @@ SCALE = 0.5
 STAFF_WIDTH = 15
 
 WHOLE_NOTE_WIDTH = SCALE * 110
-MAX_Y = SCALE * 800000
+MAX_X = STAFF_WIDTH * WHOLE_NOTE_WIDTH
 STAFF_SPACE_HEIGHT = SCALE * 19
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
@@ -157,7 +157,7 @@ def draw_score_row(
     score: List[List[Note]],
     staff_width: float,
     staves_height: float,
-) -> float:
+) -> None:
     y: float = 0
     for notes in score:
         height = draw_notes_with_staves(
@@ -174,26 +174,33 @@ def draw_score_row(
         Point(origin.x + staff_width, origin.y + staves_height),
         THICK_LINE_WIDTH,
     )
-    return staves_height
 
 
 def draw_score_rows(
-    title: str, subtitle: str, score_rows: List[List[List[Note]]], staff_width: float
-) -> Iterator[SVG]:
+    title: str,
+    subtitle: str,
+    score_rows: List[List[List[Note]]],
+    staff_width: float,
+    max_y: float,
+) -> List[SVG]:
+    svgs = []
+    GAP_HEIGHT = 3 * STAFF_HEIGHT
     svg, origin = new_page((title, subtitle))
     point = Point(origin.x, origin.y)
     for row in score_rows:
         row = [list(normalize_notes(notes)) for notes in row]
-        staves_height = get_staves_height(row)
-        height = draw_score_row(svg, point, row, staff_width, staves_height)
-        new_y = point.y + height + (3 * STAFF_HEIGHT)
-        # point.y = 0; then draw
-        if new_y > MAX_Y:
-            yield svg
-            point.y = 0
-            svg, _ = new_page()
-        point.y = new_y
-    yield svg
+        height = get_staves_height(row)
+        if point.y + height + GAP_HEIGHT > max_y:
+            svgs.append(svg)
+            svg, origin = new_page()
+            point = Point(origin.x, origin.y)
+            draw_score_row(svg, point, row, staff_width, height)
+            point = Point(point.x, point.y + height + GAP_HEIGHT)
+        else:
+            draw_score_row(svg, point, row, staff_width, height)
+            point = Point(point.x, point.y + height + GAP_HEIGHT)
+    svgs.append(svg)
+    return svgs
 
 
 def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]]:
@@ -259,7 +266,9 @@ def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
     return svg, origin
 
 
-def render(score: List[List[Note]], title: str, subtitle: str) -> List[SVG]:
+def render(
+    score: List[List[Note]], title: str, subtitle: str, yratio: float
+) -> List[SVG]:
     a = [
         list(
             split_note_rows(
@@ -270,6 +279,7 @@ def render(score: List[List[Note]], title: str, subtitle: str) -> List[SVG]:
     ]
     b = zip_score_rows(a)
 
-    svgs = list(draw_score_rows(title, subtitle, b, STAFF_WIDTH * WHOLE_NOTE_WIDTH))
+    max_y = MAX_X * yratio
+    svgs = draw_score_rows(title, subtitle, b, MAX_X, max_y)
 
     return svgs
