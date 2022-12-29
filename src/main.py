@@ -33,6 +33,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--title", type=str)
+    parser.add_argument("--composer", type=str)
     parser.add_argument("--format", type=str, choices=["pdf", "svg"], default="pdf")
     args = parser.parse_args()
 
@@ -41,10 +43,8 @@ def main() -> None:
 
     score, title, composer = parse(args.file)
 
-    if title is None:
-        title = args.file.stem
-    if composer is None:
-        composer = ""
+    title = args.title or title or args.file.stem
+    composer = args.composer or composer or ""
 
     if args.format == "pdf":
         yratio = 1.414  # A4
