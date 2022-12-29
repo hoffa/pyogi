@@ -25,11 +25,6 @@ MAX_X = STAFF_WIDTH * NOTE_HSCALE
 
 STAFF_SPACE_HEIGHT = SCALE * 19
 
-EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
-"""
-Horizontal padding between staff and notes at each extremity.
-"""
-
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
 
@@ -149,7 +144,7 @@ def draw_notes_with_staves(
     num_staves = get_num_staves(notes)
     height = num_staves * STAFF_HEIGHT
     draw_staves(svg, origin, num_staves, width)
-    draw_notes(svg, Point(origin.x + EDGE_NOTE_PADDING, origin.y + height), notes)
+    draw_notes(svg, Point(origin.x, origin.y + height), notes)
     return height
 
 
@@ -169,12 +164,6 @@ def draw_score_row(
     staff_width: float,
     staves_height: float,
 ) -> None:
-    y: float = 0
-    for notes in score:
-        height = draw_notes_with_staves(
-            svg, Point(origin.x, origin.y + y), notes, staff_width
-        )
-        y += height + PART_GAP_HEIGHT
     svg.line(
         Point(origin.x, origin.y),
         Point(origin.x, origin.y + staves_height),
@@ -185,6 +174,12 @@ def draw_score_row(
         Point(origin.x + staff_width, origin.y + staves_height),
         THICK_LINE_WIDTH,
     )
+    y: float = 0
+    for notes in score:
+        height = draw_notes_with_staves(
+            svg, Point(origin.x, origin.y + y), notes, staff_width
+        )
+        y += height + PART_GAP_HEIGHT
 
 
 def draw_score_rows(
@@ -262,12 +257,7 @@ def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
 def render(
     score: List[List[Note]], title: str, subtitle: str, yratio: float
 ) -> List[SVG]:
-    a = [
-        list(
-            split_note_rows(notes, STAFF_WIDTH - (2 * EDGE_NOTE_PADDING / NOTE_HSCALE))
-        )
-        for notes in score
-    ]
+    a = [list(split_note_rows(notes, STAFF_WIDTH)) for notes in score]
     b = zip_score_rows(a)
 
     max_y = MAX_X * yratio
