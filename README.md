@@ -24,7 +24,7 @@ Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.
 And here using the Pyogi notation:
 
 <p align="center">
-  <img alt="" src="testdata/output/debussy-deux-arabesques-short.svg">
+  <img alt="" src="testdata/output/svg/debussy-deux-arabesques-short.svg">
 </p>
 
 See [here](https://github.com/hoffa/pyogi-notation/blob/main/testdata/output/debussy-deux-arabesques.pdf) for the full composition, and the [`testdata/output/pdf`](testdata/output/pdf) directory for more examples.
