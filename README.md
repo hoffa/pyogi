@@ -27,7 +27,7 @@ And here using the Pyogi notation:
   <img alt="" src="testdata/output/debussy-deux-arabesques-short.svg">
 </p>
 
-See [here](https://github.com/hoffa/pyogi-notation/blob/main/testdata/output/debussy-deux-arabesques.pdf) for the full composition, and [`examples.md`](examples.md) for more examples.
+See [here](https://github.com/hoffa/pyogi-notation/blob/main/testdata/output/debussy-deux-arabesques.pdf) for the full composition, and the [`testdata/output`](testdata/output) directory for more examples.
 
 ## The notation in 1 minute
 

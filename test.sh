@@ -23,9 +23,3 @@ for f in testdata/input/*.mxl; do
 	cmp "${expected_svg}" "${tmp_svg}"
 	cmp "${expected_pdf}" "${tmp_pdf}"
 done
-
-echo '# Examples' >examples.md
-for f in testdata/output/*.svg; do
-	printf "## [\`$f\`](https://raw.githubusercontent.com/hoffa/notation/main/$f)\n\n" >>examples.md
-	printf "![]($f)\n\n" >>examples.md
-done
