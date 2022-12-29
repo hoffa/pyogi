@@ -40,12 +40,12 @@ There are no explicit flats, rests, note values, time signatures, key signatures
 
 ## Usage
 
+Convert a [MusicXML](https://en.wikipedia.org/wiki/MusicXML) file to a PDF in Pyogi notation:
+
 ```bash
 make init
-.venv/bin/python src/main.py score.mxl --pdf score.pdf
+.venv/bin/python src/main.py score.mxl
 ```
-
-Where `score.mxl` is a compressed [MusicXML](https://en.wikipedia.org/wiki/MusicXML) file.
 
 ## Development
 

@@ -32,13 +32,16 @@ def replace_suffix(path: Path, suffix: str) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file", type=Path)
-    parser.add_argument("--svg", type=Path)
-    parser.add_argument("--pdf", type=Path)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--format", type=str, choices=["pdf", "svg"], default="pdf")
     args = parser.parse_args()
+
+    output = args.output or replace_suffix(args.file, f".{args.format}")
+    print(f"Creating {output}")
 
     score, title, composer = parse(args.file)
 
-    if args.pdf:
+    if args.format == "pdf":
         yratio = 1.414  # A4
         svgs = render(score, title, composer, yratio)
         with tempfile.TemporaryDirectory() as _tmpdir:
@@ -52,13 +55,15 @@ def main() -> None:
                 page_path.write_text(str(svg))
                 svg2pdf(page_path, pdf_page_path)
 
-            merge_pdf(args.pdf, pdf_paths)
-
-    if args.svg:
+            merge_pdf(output, pdf_paths)
+    elif args.format == "svg":
         yratio = float("inf")  # Single SVG
         svgs = render(score, title, composer, yratio)
-        assert len(svgs) == 1
-        args.svg.write_text(str(svgs[0]))
+        if len(svgs) != 1:
+            raise Exception("Must have a single page")
+        output.write_text(str(svgs[0]))
+    else:
+        raise Exception("Invalid format")
 
 
 if __name__ == "__main__":
