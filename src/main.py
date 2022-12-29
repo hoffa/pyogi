@@ -32,16 +32,15 @@ def replace_suffix(path: Path, suffix: str) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file", type=Path)
-    parser.add_argument("title")
     parser.add_argument("--svg", type=Path)
     parser.add_argument("--pdf", type=Path)
     args = parser.parse_args()
 
-    subtitle, title = args.title.split("{sub}", 1)
+    score, title, composer = parse(args.file)
 
     if args.pdf:
         yratio = 1.414  # A4
-        svgs = render(parse(args.file), title, subtitle, yratio)
+        svgs = render(score, title, composer, yratio)
         with tempfile.TemporaryDirectory() as _tmpdir:
             tmpdir = Path(_tmpdir)
             pdf_paths = []
@@ -57,7 +56,7 @@ def main() -> None:
 
     if args.svg:
         yratio = float("inf")  # Single SVG
-        svgs = render(parse(args.file), title, subtitle, yratio)
+        svgs = render(score, title, composer, yratio)
         assert len(svgs) == 1
         args.svg.write_text(str(svgs[0]))
 
