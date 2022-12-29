@@ -5,8 +5,8 @@ mkdir -p .tmp
 
 for f in testdata/input/*.mxl; do
 	bname=$(basename "$f" .mxl)
-	expected_svg=testdata/output/${bname}.svg
-	expected_pdf=testdata/output/${bname}.pdf
+	expected_svg=testdata/output/svg/${bname}.svg
+	expected_pdf=testdata/output/pdf/${bname}.pdf
 	title=$(cat "testdata/input/${bname}.txt")
 
 	if [ "${UPDATE:-}" = "1" ]; then
