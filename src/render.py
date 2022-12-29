@@ -24,9 +24,19 @@ Horizontal scale between notes.
 MAX_X = STAFF_WIDTH * NOTE_HSCALE
 
 STAFF_SPACE_HEIGHT = SCALE * 19
+"""
+Shortest distance between staff lines.
+"""
 
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
+"""
+Half of the shortest distance between staff lines. Corresponds to where notes are rendered.
+"""
+
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
+"""
+Height of a staff (C to C).
+"""
 
 NOTE_SIZE = (5 / 4.75) * HALF_STAFF_SPACE
 """
@@ -106,9 +116,9 @@ def draw_staff(svg: SVG, origin: Point, width: float) -> None:
     )
 
 
-def draw_staves(svg: SVG, origin: Point, count: int, width: float) -> None:
+def draw_staves(svg: SVG, origin: Point, count: int) -> None:
     for i in range(count):
-        draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), width)
+        draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), MAX_X)
 
 
 def normalize_notes(notes: List[Note]) -> Iterator[Note]:
@@ -138,12 +148,10 @@ def get_num_staves(notes: List[Note]) -> int:
     return r + 1
 
 
-def draw_notes_with_staves(
-    svg: SVG, origin: Point, notes: List[Note], width: float
-) -> float:
+def draw_notes_with_staves(svg: SVG, origin: Point, notes: List[Note]) -> float:
     num_staves = get_num_staves(notes)
     height = num_staves * STAFF_HEIGHT
-    draw_staves(svg, origin, num_staves, width)
+    draw_staves(svg, origin, num_staves)
     draw_notes(svg, Point(origin.x, origin.y + height), notes)
     return height
 
@@ -161,7 +169,6 @@ def draw_score_row(
     svg: SVG,
     origin: Point,
     score: List[List[Note]],
-    staff_width: float,
     staves_height: float,
 ) -> None:
     svg.line(
@@ -170,15 +177,13 @@ def draw_score_row(
         THICK_LINE_WIDTH,
     )
     svg.line(
-        Point(origin.x + staff_width, origin.y),
-        Point(origin.x + staff_width, origin.y + staves_height),
+        Point(origin.x + MAX_X, origin.y),
+        Point(origin.x + MAX_X, origin.y + staves_height),
         THICK_LINE_WIDTH,
     )
     y: float = 0
     for notes in score:
-        height = draw_notes_with_staves(
-            svg, Point(origin.x, origin.y + y), notes, staff_width
-        )
+        height = draw_notes_with_staves(svg, Point(origin.x, origin.y + y), notes)
         y += height + PART_GAP_HEIGHT
 
 
@@ -186,7 +191,6 @@ def draw_score_rows(
     title: str,
     subtitle: str,
     score_rows: List[List[List[Note]]],
-    staff_width: float,
     max_y: float,
 ) -> List[SVG]:
     svgs = []
@@ -199,22 +203,22 @@ def draw_score_rows(
             svgs.append(svg)
             svg, origin = new_page()
             point = Point(origin.x, origin.y)
-            draw_score_row(svg, point, row, staff_width, height)
+            draw_score_row(svg, point, row, height)
             point = Point(point.x, point.y + height + GAP_HEIGHT)
         else:
-            draw_score_row(svg, point, row, staff_width, height)
+            draw_score_row(svg, point, row, height)
             point = Point(point.x, point.y + height + GAP_HEIGHT)
     svgs.append(svg)
     return svgs
 
 
-def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]]:
+def split_note_rows(notes: List[Note]) -> Iterator[List[Note]]:
     # TODO: should row_length be based on whole note and not absolute x?
     # Maybe that'll cut it off at more natural place!
     r = defaultdict(list)
     for note in notes:
-        x = note.time % row_length
-        row = note.time // row_length
+        x = note.time % STAFF_WIDTH
+        row = note.time // STAFF_WIDTH
         r[row].append(
             Note(
                 time=x,
@@ -257,10 +261,10 @@ def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
 def render(
     score: List[List[Note]], title: str, subtitle: str, yratio: float
 ) -> List[SVG]:
-    a = [list(split_note_rows(notes, STAFF_WIDTH)) for notes in score]
+    a = [list(split_note_rows(notes)) for notes in score]
     b = zip_score_rows(a)
 
     max_y = MAX_X * yratio
-    svgs = draw_score_rows(title, subtitle, b, MAX_X, max_y)
+    svgs = draw_score_rows(title, subtitle, b, max_y)
 
     return svgs
