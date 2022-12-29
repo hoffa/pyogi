@@ -11,6 +11,10 @@
 
 ![](testdata/output/debussy-deux-arabesques.svg)
 
+## [`testdata/output/faure-piano-quintet-2-115.svg`](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/faure-piano-quintet-2-115.svg)
+
+![](testdata/output/faure-piano-quintet-2-115.svg)
+
 ## [`testdata/output/fur-elise.svg`](https://raw.githubusercontent.com/hoffa/notation/main/testdata/output/fur-elise.svg)
 
 ![](testdata/output/fur-elise.svg)

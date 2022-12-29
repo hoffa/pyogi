@@ -215,11 +215,11 @@ def getindex(v: List[Any], i: int, default: Any) -> Any:
 
 def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]:
     d = []
-    # TODO: Support more than 2 parts
-    v = score_rows[0]
-    w = score_rows[1]
-    for i in range(len(score_rows[0])):
-        d.append([getindex(v, i, []), getindex(w, i, [])])
+    # Find the length of the longest part
+    max_len = max(len(part) for part in score_rows)
+    # Zip the rows of all parts, filling in with empty lists if necessary
+    for i in range(max_len):
+        d.append([getindex(part, i, []) for part in score_rows])
     return d
 
 
