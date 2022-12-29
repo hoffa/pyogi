@@ -41,6 +41,11 @@ def main() -> None:
 
     score, title, composer = parse(args.file)
 
+    if title is None:
+        title = args.file.stem
+    if composer is None:
+        composer = ""
+
     if args.format == "pdf":
         yratio = 1.414  # A4
         svgs = render(score, title, composer, yratio)
