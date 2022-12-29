@@ -1,4 +1,3 @@
-import sys
 from collections import defaultdict
 from typing import Any, Iterator, List, Optional, Tuple
 
@@ -6,36 +5,74 @@ from parse import Note
 from svg import SVG, Point
 
 NUM_NOTES = 7
+"""
+Number of notes on the diatonic scale.
+"""
 
 SCALE = 0.5
+"""
+Rendering scale.
+"""
 
 STAFF_WIDTH = 15
 
-WHOLE_NOTE_WIDTH = SCALE * 110
-MAX_X = STAFF_WIDTH * WHOLE_NOTE_WIDTH
+NOTE_HSCALE = SCALE * 110
+"""
+Horizontal scale between notes.
+"""
+
+MAX_X = STAFF_WIDTH * NOTE_HSCALE
+
 STAFF_SPACE_HEIGHT = SCALE * 19
+
 EDGE_NOTE_PADDING = 2 * STAFF_SPACE_HEIGHT
+"""
+Horizontal padding between staff and notes at each extremity.
+"""
+
 HALF_STAFF_SPACE = STAFF_SPACE_HEIGHT / 2
 STAFF_HEIGHT = NUM_NOTES * HALF_STAFF_SPACE
-NOTE_SIZE = SCALE * 10
 
-NOTE_RX = 1.1 * NOTE_SIZE
-NOTE_RY = 0.95 * 0.7 * NOTE_SIZE
+NOTE_SIZE = (5 / 4.75) * HALF_STAFF_SPACE
+"""
+Note scale.
+"""
+
+TOP_STAVE_PADDING = 3 * STAFF_HEIGHT
+"""
+Top padding on first page (which has the title) to the first staff.
+"""
+
+PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
+"""
+Padding between staves within the grand staff.
+"""
+
+GAP_HEIGHT = 3 * STAFF_HEIGHT
+"""
+Padding between the wrapped grand staff.
+"""
 
 THIN_LINE_WIDTH = SCALE * 1.3
+"""
+Width of thin lines.
+"""
+
 THICK_LINE_WIDTH = 2.8 * THIN_LINE_WIDTH
+"""
+Width of thick lines.
+"""
 
 
 def draw_note(svg: SVG, note: Note, point: Point) -> None:
+    RX = 0.9 * 1.1 * NOTE_SIZE
+    RY = 0.63 * 0.95 * NOTE_SIZE
+    ANGLE = -20
     accidental = note.accidental
     if accidental == "natural":
-        svg.ellipse(
-            point, 0.9 * NOTE_RX, 0.9 * NOTE_RY, -20, "white", "black", THICK_LINE_WIDTH
-        )
+        svg.ellipse(point, RX, RY, ANGLE, "white", "black", THICK_LINE_WIDTH)
     elif accidental == "sharp":
-        svg.ellipse(
-            point, 0.9 * NOTE_RX, 0.9 * NOTE_RY, -20, "black", "black", THICK_LINE_WIDTH
-        )
+        svg.ellipse(point, RX, RY, ANGLE, "black", "black", THICK_LINE_WIDTH)
 
 
 def line_width_at_index(index: int) -> float:
@@ -50,7 +87,7 @@ def line_width_at_index(index: int) -> float:
 def draw_notes(svg: SVG, origin: Point, notes: List[Note]) -> None:
     for note in notes:
         position = Point(
-            origin.x + (note.time * WHOLE_NOTE_WIDTH),
+            origin.x + (note.time * NOTE_HSCALE),
             origin.y - (note.note * HALF_STAFF_SPACE),
         )
         draw_note(svg, note, position)
@@ -93,10 +130,6 @@ def normalize_notes(notes: List[Note]) -> Iterator[Note]:
         )
 
 
-def get_width(notes: List[Note]) -> float:
-    return max(note.time for note in notes) * WHOLE_NOTE_WIDTH
-
-
 def get_num_staves(notes: List[Note]) -> int:
     if not notes:
         return 1
@@ -118,10 +151,6 @@ def draw_notes_with_staves(
     draw_staves(svg, origin, num_staves, width)
     draw_notes(svg, Point(origin.x + EDGE_NOTE_PADDING, origin.y + height), notes)
     return height
-
-
-TOP_STAVE_PADDING = 3 * STAFF_HEIGHT
-PART_GAP_HEIGHT = 2 * STAFF_HEIGHT
 
 
 def get_staves_height(score: List[List[Note]]) -> float:
@@ -166,7 +195,6 @@ def draw_score_rows(
     max_y: float,
 ) -> List[SVG]:
     svgs = []
-    GAP_HEIGHT = 3 * STAFF_HEIGHT
     svg, origin = new_page((title, subtitle))
     point = Point(origin.x, origin.y)
     for row in score_rows:
@@ -203,10 +231,6 @@ def split_note_rows(notes: List[Note], row_length: float) -> Iterator[List[Note]
         yield r[row]
 
 
-def log(*v: Any) -> None:
-    print(v, file=sys.stderr)
-
-
 def getindex(v: List[Any], i: int, default: Any) -> Any:
     if 0 <= i < len(v):
         return v[i]
@@ -229,8 +253,8 @@ def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
     if not title:
         origin = Point(0, 0)
         return svg, origin
-    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, -20), title[0], 25, "bold")
-    svg.text(Point(STAFF_WIDTH * WHOLE_NOTE_WIDTH / 2, 20), title[1], 20)
+    svg.text(Point(MAX_X / 2, -20), title[0], 25, "bold")
+    svg.text(Point(MAX_X / 2, 20), title[1], 20)
     origin = Point(0, TOP_STAVE_PADDING)
     return svg, origin
 
@@ -240,9 +264,7 @@ def render(
 ) -> List[SVG]:
     a = [
         list(
-            split_note_rows(
-                notes, STAFF_WIDTH - (2 * EDGE_NOTE_PADDING / WHOLE_NOTE_WIDTH)
-            )
+            split_note_rows(notes, STAFF_WIDTH - (2 * EDGE_NOTE_PADDING / NOTE_HSCALE))
         )
         for notes in score
     ]
