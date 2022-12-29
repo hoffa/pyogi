@@ -14,11 +14,14 @@ for f in testdata/input/*.mxl; do
 	fi
 
 	tmp_svg=.tmp/${bname}.svg
-	tmp_pdf=.tmp/${bname}.pdf
-
 	.venv/bin/python src/main.py "$f" --format svg --output "${tmp_svg}"
-	.venv/bin/python src/main.py "$f" --format pdf --output "${tmp_pdf}"
-
 	cmp "${expected_svg}" "${tmp_svg}"
+
+	if [ -n "${FAST:-}" ]; then
+		break
+	fi
+
+	tmp_pdf=.tmp/${bname}.pdf
+	.venv/bin/python src/main.py "$f" --format pdf --output "${tmp_pdf}"
 	cmp "${expected_pdf}" "${tmp_pdf}"
 done
