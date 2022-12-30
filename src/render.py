@@ -146,7 +146,7 @@ def get_num_staves(notes: List[Note]) -> Tuple[int, int]:
     r = max_note // NUM_NOTES
     q = max_note % NUM_NOTES
     if q == 0:
-        return r, o
+        r -= 1
     r += 1
     # Adjacent to topmost staff
     if q == 1:
