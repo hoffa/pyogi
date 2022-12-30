@@ -145,6 +145,8 @@ def get_num_staves(notes: List[Note]) -> int:
     q = max_note % NUM_NOTES
     if q == 0:
         return r
+    if q == 1:
+        return r
     return r + 1
 
 
