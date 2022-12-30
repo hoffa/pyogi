@@ -135,31 +135,43 @@ def normalize_notes(notes: List[Note]) -> Iterator[Note]:
         )
 
 
-def get_num_staves(notes: List[Note]) -> int:
+# count, base offset for rendering
+def get_num_staves(notes: List[Note]) -> Tuple[int, int]:
+    o = 0
     if not notes:
-        return 1
+        return 1, o
     max_note = max(note.note for note in notes)
     if max_note == 0:
-        return 1
+        return 1, o
     r = max_note // NUM_NOTES
     q = max_note % NUM_NOTES
     if q == 0:
-        return r
+        return r, o
+    r += 1
+    # Adjacent to topmost staff
     if q == 1:
-        return r
-    return r + 1
+        r -= 1
+    min_note = min(note.note for note in notes)
+    # Adjacent to bottom staff
+    if min_note % NUM_NOTES == 6:
+        r -= 1
+        o -= 1
+    return r, o
 
 
 def draw_notes_with_staves(svg: SVG, origin: Point, notes: List[Note]) -> float:
-    num_staves = get_num_staves(notes)
+    num_staves, base_offset = get_num_staves(notes)
     height = num_staves * STAFF_HEIGHT
     draw_staves(svg, origin, num_staves)
-    draw_notes(svg, Point(origin.x, origin.y + height), notes)
+    # this is where to adjust
+    draw_notes(
+        svg, Point(origin.x, origin.y + height - (base_offset * STAFF_HEIGHT)), notes
+    )
     return height
 
 
 def get_staves_height(score: List[List[Note]]) -> float:
-    staves_count = [get_num_staves(notes) for notes in score]
+    staves_count = [get_num_staves(notes)[0] for notes in score]
     # gap + staff heights
     staves_height = ((len(staves_count) - 1) * PART_GAP_HEIGHT) + sum(
         staves_count
