@@ -15,19 +15,16 @@ For example:
 1. Why have both C♯ and D♭ when they correspond to the same key?
 1. Why aren't staff lines for different [octaves](https://en.wikipedia.org/wiki/Octave) consistent? If a note is on a solid line, the same note one octave higher is on a blank line.
 
-## Comparison
+## Example
 
-Here's the beginning of Claude Debussy's [Arabesque No. 1](https://en.wikipedia.org/wiki/Two_Arabesques) in modern musical notation:
+<details>
+  <summary>Für Elise in Pyogi notation</summary>
 
-![](media/modern.png)
+  ![](testdata/output/svg/fur-elise.svg)
+  
+</details>
 
-And here using the Pyogi notation:
-
-<p align="center">
-  <img alt="" src="testdata/output/svg/debussy-deux-arabesques-short.svg">
-</p>
-
-See [here](https://github.com/hoffa/pyogi-notation/blob/main/testdata/output/debussy-deux-arabesques.pdf) for the full composition, and the [`testdata/output/pdf`](testdata/output/pdf) directory for more examples.
+See the [`testdata/output/pdf`](testdata/output/pdf) directory for more examples.
 
 ## The notation in 1 minute
 
