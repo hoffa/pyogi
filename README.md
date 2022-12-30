@@ -18,9 +18,9 @@ For example:
 ## Example
 
 <details>
-  <summary>Für Elise in Pyogi notation</summary>
+  <summary>Schubert's Allegretto in Pyogi notation</summary>
 
-  ![](testdata/output/svg/fur-elise.svg)
+  ![](testdata/output/svg/schubert-allegretto.svg)
   
 </details>
 
