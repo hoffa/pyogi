@@ -2,7 +2,6 @@ import argparse
 import os
 import tempfile
 from pathlib import Path
-from typing import List
 
 from PyPDF2 import PdfWriter
 from reportlab.graphics import renderPDF  # type: ignore
@@ -17,7 +16,7 @@ def svg2pdf(svg: Path, pdf: Path) -> None:
     renderPDF.drawToFile(drawing, str(pdf))
 
 
-def merge_pdf(output: Path, pdfs: List[Path]) -> None:
+def merge_pdf(output: Path, pdfs: list[Path]) -> None:
     merger = PdfWriter()
     for path in pdfs:
         merger.append(str(path))

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, List
+from typing import Any
 
 import svgwrite  # type: ignore
 from svgwrite.container import Group  # type: ignore
@@ -49,7 +49,7 @@ class SVG:
             )
         )
 
-    def polygon(self, points: List[Point], color: str = "black") -> None:
+    def polygon(self, points: list[Point], color: str = "black") -> None:
         for point in points:
             self._update_size(point)
         self._add(

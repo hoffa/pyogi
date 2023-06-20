@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterator, List, Literal, Tuple
+from typing import Iterator, Literal
 
 import music21
 from music21.stream import Part, Score
@@ -38,12 +38,12 @@ def get_notes(part: Part) -> Iterator[Note]:
             )
 
 
-def _parse(score: Score) -> Iterator[List[Note]]:
+def _parse(score: Score) -> Iterator[list[Note]]:
     for part in score.parts:
         yield list(get_notes(part))
 
 
-def parse(filename: Path) -> Tuple[List[List[Note]], str, str]:
+def parse(filename: Path) -> tuple[list[list[Note]], str, str]:
     score = music21.converter.parse(filename)
     if not isinstance(score, Score):
         raise Exception("Unsupported score type")
