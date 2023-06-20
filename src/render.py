@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Any, Iterator, List, Optional, Tuple
+from typing import Any, Iterator, Optional
 
 from parse import Note
 from svg import SVG, Point
@@ -89,7 +89,7 @@ def line_width_at_index(index: int) -> float:
     return 0
 
 
-def draw_notes(svg: SVG, origin: Point, notes: List[Note]) -> None:
+def draw_notes(svg: SVG, origin: Point, notes: list[Note]) -> None:
     for note in notes:
         position = Point(
             origin.x + (note.time * NOTE_HSCALE),
@@ -121,7 +121,7 @@ def draw_staves(svg: SVG, origin: Point, count: int) -> None:
         draw_staff(svg, Point(origin.x, origin.y + (i * STAFF_HEIGHT)), MAX_X)
 
 
-def normalize_notes(notes: List[Note]) -> Iterator[Note]:
+def normalize_notes(notes: list[Note]) -> Iterator[Note]:
     # Shift everything as much as possible
     if not notes:
         return
@@ -136,7 +136,7 @@ def normalize_notes(notes: List[Note]) -> Iterator[Note]:
 
 
 # count, base offset for rendering
-def get_num_staves(notes: List[Note]) -> Tuple[int, int]:
+def get_num_staves(notes: list[Note]) -> tuple[int, int]:
     o = 0
     if not notes:
         return 1, o
@@ -159,7 +159,7 @@ def get_num_staves(notes: List[Note]) -> Tuple[int, int]:
     return r, o
 
 
-def draw_notes_with_staves(svg: SVG, origin: Point, notes: List[Note]) -> float:
+def draw_notes_with_staves(svg: SVG, origin: Point, notes: list[Note]) -> float:
     num_staves, base_offset = get_num_staves(notes)
     height = num_staves * STAFF_HEIGHT
     draw_staves(svg, origin, num_staves)
@@ -170,7 +170,7 @@ def draw_notes_with_staves(svg: SVG, origin: Point, notes: List[Note]) -> float:
     return height
 
 
-def get_staves_height(score: List[List[Note]]) -> float:
+def get_staves_height(score: list[list[Note]]) -> float:
     staves_count = [get_num_staves(notes)[0] for notes in score]
     # gap + staff heights
     staves_height = ((len(staves_count) - 1) * PART_GAP_HEIGHT) + sum(
@@ -182,7 +182,7 @@ def get_staves_height(score: List[List[Note]]) -> float:
 def draw_score_row(
     svg: SVG,
     origin: Point,
-    score: List[List[Note]],
+    score: list[list[Note]],
     staves_height: float,
 ) -> None:
     svg.line(
@@ -204,9 +204,9 @@ def draw_score_row(
 def draw_score_rows(
     title: str,
     subtitle: str,
-    score_rows: List[List[List[Note]]],
+    score_rows: list[list[list[Note]]],
     max_y: float,
-) -> List[SVG]:
+) -> list[SVG]:
     svgs = []
     svg, origin = new_page((title, subtitle))
     point = Point(origin.x, origin.y)
@@ -226,7 +226,7 @@ def draw_score_rows(
     return svgs
 
 
-def split_note_rows(notes: List[Note]) -> Iterator[List[Note]]:
+def split_note_rows(notes: list[Note]) -> Iterator[list[Note]]:
     # TODO: should row_length be based on whole note and not absolute x?
     # Maybe that'll cut it off at more natural place!
     r = defaultdict(list)
@@ -244,13 +244,13 @@ def split_note_rows(notes: List[Note]) -> Iterator[List[Note]]:
         yield r[row]
 
 
-def getindex(v: List[Any], i: int, default: Any) -> Any:
+def getindex(v: list[Any], i: int, default: Any) -> Any:
     if 0 <= i < len(v):
         return v[i]
     return default
 
 
-def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]:
+def zip_score_rows(score_rows: list[list[list[Note]]]) -> list[list[list[Note]]]:
     d = []
     # Find the length of the longest part
     max_len = max(len(part) for part in score_rows)
@@ -261,7 +261,7 @@ def zip_score_rows(score_rows: List[List[List[Note]]]) -> List[List[List[Note]]]
 
 
 # return page and origin
-def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
+def new_page(title: Optional[tuple[str, str]] = None) -> tuple[SVG, Point]:
     svg = SVG(margin_w=int(2 * STAFF_HEIGHT), margin_h=int(3 * STAFF_HEIGHT))
     if not title:
         origin = Point(0, 0)
@@ -273,8 +273,8 @@ def new_page(title: Optional[Tuple[str, str]] = None) -> Tuple[SVG, Point]:
 
 
 def render(
-    score: List[List[Note]], title: str, subtitle: str, yratio: float
-) -> List[SVG]:
+    score: list[list[Note]], title: str, subtitle: str, yratio: float
+) -> list[SVG]:
     a = [list(split_note_rows(notes)) for notes in score]
     b = zip_score_rows(a)
 
