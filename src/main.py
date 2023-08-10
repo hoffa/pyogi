@@ -3,7 +3,7 @@ import os
 import tempfile
 from pathlib import Path
 
-from PyPDF2 import PdfWriter
+from pypdf import PdfWriter
 from reportlab.graphics import renderPDF  # type: ignore
 from svglib.svglib import svg2rlg  # type: ignore
 
